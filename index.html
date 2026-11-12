@@ -27,22 +27,13 @@ window.addEventListener('DOMContentLoaded',()=>{const f=document.createElement('
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
 <style>
 /* Layout: working tool. Name and three views on top, one column below; every change opens with its sketch, problem and proposal, then the stage line. */
+/* single dark look, by request: same palette whatever the device theme */
 :root{
-  --bg:#f2f4f7; --surface:#ffffff; --sunk:#e9edf2; --ink:#15202b; --muted:#566473; --line:#d3dae2;
-  --accent:#0b5cab; --on-accent:#ffffff; --accent-soft:#dfecf9;
-  --ok:#1b7446; --ok-soft:#dcf1e5; --warn:#8f5606; --warn-soft:#fbecd0; --bad:#ae2f29; --bad-soft:#f9dfdc; --on-sem:#ffffff;
+  --bg:#10151b; --surface:#19212a; --sunk:#141b22; --ink:#e5eaf0; --muted:#97a5b3; --line:#2c3743;
+  --accent:#6fb1f6; --on-accent:#0b1620; --accent-soft:#1b3350;
+  --ok:#62c594; --ok-soft:#173326; --warn:#e2aa52; --warn-soft:#3a2b10; --bad:#f17d75; --bad-soft:#40201e; --on-sem:#0b1620;
   --sans:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
   --mono:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;
-}
-@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){
-  --bg:#10151b; --surface:#19212a; --sunk:#141b22; --ink:#e5eaf0; --muted:#97a5b3; --line:#2c3743;
-  --accent:#6fb1f6; --on-accent:#0b1620; --accent-soft:#1b3350;
-  --ok:#62c594; --ok-soft:#173326; --warn:#e2aa52; --warn-soft:#3a2b10; --bad:#f17d75; --bad-soft:#40201e; --on-sem:#0b1620;
-  color-scheme:dark } }
-:root[data-theme="dark"]{
-  --bg:#10151b; --surface:#19212a; --sunk:#141b22; --ink:#e5eaf0; --muted:#97a5b3; --line:#2c3743;
-  --accent:#6fb1f6; --on-accent:#0b1620; --accent-soft:#1b3350;
-  --ok:#62c594; --ok-soft:#173326; --warn:#e2aa52; --warn-soft:#3a2b10; --bad:#f17d75; --bad-soft:#40201e; --on-sem:#0b1620;
   color-scheme:dark }
 
 *{box-sizing:border-box}
@@ -89,6 +80,9 @@ label input,label textarea,label select{font-weight:400}
 .tag{font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;border:1px dashed var(--muted);color:var(--muted);padding:1px 6px;border-radius:4px;white-space:nowrap}
 
 .bars{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:4px;align-items:end;border-bottom:2px solid var(--line)}
+.bars.w8{grid-template-columns:repeat(8,minmax(0,1fr))}
+.bar.wbar .col{background:var(--ink);opacity:.75} .bar.wbar .col.zero{background:var(--line);opacity:1}
+.bar.wbar .l{flex-direction:column}
 .bar{display:flex;flex-direction:column;align-items:center;justify-content:flex-end;gap:3px;padding:6px 1px 0;border:0;border-radius:8px 8px 0 0;background:none;min-width:0;position:relative}
 .bar .n{font-family:var(--mono);font-size:15px;font-weight:500}
 .bar .col{width:70%;max-width:46px;min-height:3px;border-radius:5px 5px 0 0;background:var(--accent)}
@@ -329,12 +323,14 @@ function vOverview(){
   const SHORT={new:'Request',precheck:'Pre-check',release1:'Release 1',technical:'Tech.',commercial:'Comm.',approval:'Approval',docs:'Docs'};
   const cnt=STAGES.map(s=>all.filter(c=>c.stav===s[0]).length),mx=Math.max(1,...cnt);
   const bars='<div class="panel"><h3>Open changes by stage</h3><div class="bars">'+STAGES.map((s,i)=>'<button class="bar'+(s[2]==='Change manager'?' cm':'')+'" data-act="filter" data-k="'+(f===s[0]?'open':s[0])+'" aria-pressed="'+(f===s[0])+'" aria-label="'+s[1]+': '+cnt[i]+'"><span class="n">'+cnt[i]+'</span><span class="col'+(cnt[i]?'':' zero')+'" style="height:'+Math.round(cnt[i]/mx*72)+'px"></span><span class="l">'+SHORT[s[0]]+'</span></button>').join('')+'</div><p class="small muted"><span class="key cm"></span>waiting for the change manager <span class="key"></span>waiting for Design or departments · tap a bar to filter</p></div>';
+  const wks=Array.from({length:8},(_,i)=>wkAdd(NOW,i)),wl=wks.map(weekLoad),wmx=Math.max(1,...wl);
+  const wbars='<div class="panel"><h3>Items to discuss per meeting week</h3><div class="bars w8">'+wks.map((k,i)=>'<button class="bar wbar" data-act="gowk" data-k="'+k+'" aria-label="'+esc(wkLabel(k))+': '+wl[i]+' items"><span class="n">'+wl[i]+'</span><span class="col'+(wl[i]?'':' zero')+'" style="height:'+Math.round(wl[i]/wmx*72)+'px"></span><span class="l">'+esc(cw(k))+(i===0?'<br>now':'')+'</span></button>').join('')+'</div><p class="small muted">Next 8 weeks. This week includes items carried over from missed meetings. Tap a week to open its meeting.</p></div>';
   const chips=[['open','Open'],['released','Released'],['rejected','Rejected'],['all','All']].map(([k,l])=>'<button class="chip" data-act="filter" data-k="'+k+'" aria-pressed="'+(f===k)+'">'+l+'<span class="n">'+all.filter(c=>match(c,k)).length+'</span></button>').join('');
   let list=all.filter(c=>match(c,f));
   if(q)list=list.filter(c=>[c.no,c.title,c.requester,c.part,c.vehicle,c.problem,c.proposal].join(' ').toLowerCase().includes(q));
   const body=!all.length?'<div class="empty"><p>No change requests yet.</p><p class="small">Every change starts with a One Page request. Once saved it shows up here and waits for the change manager.</p><a class="btn" href="#new" style="text-decoration:none">Create the first request</a></div>'
     :list.length?'<div class="list">'+list.map(row).join('')+'</div>':'<div class="empty"><p>Nothing matches this filter.</p></div>';
-  return '<div class="stack">'+(all.length?bars:'')+'<div class="chips">'+chips+'</div><input id="search" type="search" placeholder="Search number, title, part, requester" value="'+esc(S.q)+'" data-search aria-label="Search">'+body+'</div>';
+  return '<div class="stack">'+(all.length?bars+wbars:'')+'<div class="chips">'+chips+'</div><input id="search" type="search" placeholder="Search number, title, part, requester" value="'+esc(S.q)+'" data-search aria-label="Search">'+body+'</div>';
 }
 
 function vNew(){
@@ -354,7 +350,9 @@ function vNew(){
   '<div class="row"><button class="primary" type="submit"'+(S.busy?' disabled':'')+'>'+(S.busy?'Saving…':'Submit request')+'</button><span class="muted small">The request gets a number and goes on this week’s meeting.</span></div></form>';
 }
 
-function weekOpts(sel){let o='<option value="">Not planned</option>',has=false;for(let i=0;i<13;i++){const k=wkAdd(NOW,i);if(k===sel)has=true;o+='<option value="'+k+'"'+(k===sel?' selected':'')+'>'+esc(wkLabel(k))+(i===0?' (this week)':'')+'</option>'}
+function shiftOpts(sel){const cur=sel===undefined?wkAdd(NOW,1):sel;let o='';for(let i=0;i<8;i++){const k=wkAdd(NOW,i);o+='<option value="'+k+'"'+(k===cur?' selected':'')+'>'+esc(wkLabel(k))+(i===0?' (this week)':i===1?' (next week)':'')+'</option>'}return o+'<option value=""'+(cur===''?' selected':'')+'>Not planned</option>'}
+function weekLoad(k){return S.items.filter(c=>open(c)&&(c.week===k||(k===NOW&&c.week&&c.week<NOW))).length}
+function weekOpts(sel){let o='<option value="">Not planned</option>',has=false;for(let i=0;i<8;i++){const k=wkAdd(NOW,i);if(k===sel)has=true;o+='<option value="'+k+'"'+(k===sel?' selected':'')+'>'+esc(wkLabel(k))+(i===0?' (this week)':'')+'</option>'}
   if(sel&&!has)o+='<option value="'+esc(sel)+'" selected>'+esc(wkLabel(sel))+' (past)</option>';return o}
 
 function deptRow(c,k,label,extra){
@@ -405,7 +403,7 @@ function vDetail(c){
   const MINTAB='<section class="panel"><h3>Latest status · all minutes and notes ('+ent.length+')</h3><p class="small">'+esc(waitText(c))+' · '+meetNote(c)+'</p>'+
     (ent.length?'<input type="search" data-mq placeholder="Search minutes and notes" aria-label="Search minutes and notes"><div class="thread scrollbox" tabindex="0" aria-label="Minutes and notes, newest first">'+ent.map(e=>entryHtml(c,e)).join('')+'<p class="muted small" data-mq-empty hidden>Nothing matches the search.</p></div>':'<p class="muted">No notes or minutes yet.</p>')+'</section>'+
     (open(c)?'<section class="panel"><h3>Add meeting minutes</h3><label>Minutes<textarea data-m="text" data-id="'+id+'" placeholder="What was agreed">'+esc(m.text||'')+'</textarea></label><div class="grid"><label>Next step<input data-m="next" data-id="'+id+'" value="'+esc(m.next||'')+'"></label><label>Who<input data-m="who" data-id="'+id+'" value="'+esc(m.who||'')+'"></label>'+
-      '<label>Back on the agenda<select data-m="shift" data-id="'+id+'">'+[['1','Next week'],['2','In 2 weeks'],['4','In 4 weeks'],['0','Not planned']].map(([a,b])=>'<option value="'+a+'"'+((m.shift||'1')===a?' selected':'')+'>'+b+'</option>').join('')+'</select></label></div><div><button class="primary" data-act="savemin" data-id="'+id+'">Save minutes and reschedule</button></div></section>':'')+
+      '<label>Back on the agenda<select data-m="shift" data-id="'+id+'">'+shiftOpts(m.shift)+'</select></label></div><div><button class="primary" data-act="savemin" data-id="'+id+'">Save minutes and reschedule</button></div></section>':'')+
     '<section class="panel"><h3>Process history</h3>'+(hist?'<div class="hist">'+hist+'</div>':'<p class="muted">No steps recorded yet.</p>')+'</section>';
   return '<div class="stack"><div><button class="link" data-act="back">← Back to overview</button></div>'+
   '<section class="panel"><h2>'+esc(c.title)+'</h2>'+lead(c)+
@@ -440,7 +438,7 @@ function vMeeting(){
     latestLine(c,'muted')+
     '<label>Minutes<textarea data-m="text" data-id="'+id+'" placeholder="What was agreed">'+esc(m.text||'')+'</textarea></label>'+
     '<div class="grid"><label>Next step<input data-m="next" data-id="'+id+'" value="'+esc(m.next||'')+'"></label><label>Who<input data-m="who" data-id="'+id+'" value="'+esc(m.who||'')+'"></label>'+
-    '<label>Back on the agenda<select data-m="shift" data-id="'+id+'">'+[['1','Next week'],['2','In 2 weeks'],['4','In 4 weeks'],['0','Not planned']].map(([a,b])=>'<option value="'+a+'"'+((m.shift||'1')===a?' selected':'')+'>'+b+'</option>').join('')+'</select></label></div>'+
+    '<label>Back on the agenda<select data-m="shift" data-id="'+id+'">'+shiftOpts(m.shift)+'</select></label></div>'+
     '<div><button class="primary" data-act="savemin" data-id="'+id+'">Save minutes and reschedule</button></div></div>'};
   const list=[...carried,...mine];
   return '<div class="stack"><div class="weeknav"><button data-act="wk" data-n="-1" aria-label="Previous week">‹</button><span class="w">'+esc(wkLabel(W))+'</span><button data-act="wk" data-n="1" aria-label="Next week">›</button>'+(W!==NOW?'<button data-act="wk" data-n="0">This week</button>':'')+
@@ -517,6 +515,7 @@ app.addEventListener('click',async e=>{const b=e.target.closest('[data-act]');if
   else if(a==='sendreply'&&c){const txt=(S.rdraft||'').trim();if(!txt){toast('Write the reply first.',true);return}
     const n={id:'n'+Date.now().toString(36)+Math.random().toString(36).slice(2,6),ts:nowTs(),who:(S.me||'').trim(),dept:'',text:txt,re:b.dataset.re};
     S.reply=null;S.rdraft='';await write(id,{notes:[...(c.notes||[]),n]});toast('Reply saved');render()}
+  else if(a==='gowk'){S.week=b.dataset.k;if(location.hash==='#meeting'){S.view='meeting';render();window.scrollTo(0,0)}else{const k=S.week;location.hash='#meeting';setTimeout(()=>{S.week=k;render()},0)}}
   else if(a==='filter'){S.filter=b.dataset.k;render()}
   else if(a==='wk'){const n=Number(b.dataset.n);S.week=n===0?NOW:wkAdd(S.week,n);render()}
   else if(a==='feas'&&c){const k=b.dataset.k,v=inp(c,k).f===b.dataset.v?'pending':b.dataset.v;
@@ -535,9 +534,9 @@ app.addEventListener('click',async e=>{const b=e.target.closest('[data-act]');if
   else if(a==='delno'){S.del=false;render()}
   else if(a==='delyes'){try{await db.doc('changes/'+id).delete();S.detail=null;S.del=false;toast('Deleted');render()}catch(err){toast(errMsg(err),true)}}
   else if(a==='savemin'&&c){const m=S.min[id]||{};if(!(m.text||'').trim()){toast('Write what was agreed first.',true);return}
-    const W=S.detail?NOW:S.week,n=Number(m.shift||'1'),base=W>NOW?W:NOW;
+    const W=S.detail?NOW:S.week,n=1,base=NOW,nwSel=m.shift===undefined?wkAdd(NOW,1):m.shift;
     const z=[...(c.minutes||[]),{week:W,date:today(),ts:nowTs(),text:m.text.trim(),next:(m.next||'').trim(),who:(m.who||'').trim()}];
-    delete S.min[id];const nw=n?wkAdd(base,n):'';await write(id,{minutes:z,week:nw});toast('Minutes saved'+(nw?', next meeting '+cw(nw):''));render();if(!S.detail){const el=app.querySelector('[data-done="'+id+'"]');if(el)el.scrollIntoView({block:'center'})}}
+    delete S.min[id];const nw=nwSel;await write(id,{minutes:z,week:nw});toast('Minutes saved'+(nw?', next meeting '+cw(nw):''));render();if(!S.detail){const el=app.querySelector('[data-done="'+id+'"]');if(el)el.scrollIntoView({block:'center'})}}
   else if(a==='copy'){const W=S.week,lines=['Change management meeting, '+wkLabel(W),''];
     S.items.forEach(c=>(c.minutes||[]).filter(z=>z.week===W).forEach(z=>{lines.push(c.no+' '+c.title+' ['+(SNAME[c.stav]||'')+']','  '+z.text);if(z.next)lines.push('  Next step: '+z.next+(z.who?' ('+z.who+')':''));lines.push('')}));
     if(lines.length<3){toast('No minutes written for this week yet.',true);return}
