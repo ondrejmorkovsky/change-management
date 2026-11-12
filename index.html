@@ -500,7 +500,7 @@ function vDetail(c){
       '<label>Back on the agenda<select data-m="shift" data-id="'+id+'">'+shiftOpts(m.shift)+'</select></label></div><div><button class="primary" data-act="savemin" data-id="'+id+'">Save minutes and reschedule</button></div></section>':'')+
     '<section class="panel"><h3>Process history</h3>'+(hist?'<div class="hist">'+hist+'</div>':'<p class="muted">No steps recorded yet.</p>')+'</section>';
   return '<div class="stack"><div><button class="link" data-act="back">← Back to overview</button></div>'+
-  '<section class="panel"><h2>'+esc(c.title)+'</h2>'+lead(c)+
+  '<section class="panel"><div class="row" style="justify-content:space-between;align-items:flex-start"><h2 style="flex:1 1 300px">'+esc(c.title)+'</h2><button data-act="onepage" data-id="'+id+'">One Page report (PDF)</button></div>'+lead(c)+
     '<div class="facts"><div><span>Department</span>'+esc(DNAME[c.dept]||'—')+'</div><div><span>Requester</span>'+esc(c.requester||'—')+'</div><div><span>Vehicle / project</span>'+esc(c.vehicle||'—')+'</div><div><span>Part / drawing</span><b class="mono" style="font-weight:400">'+esc(c.part||'—')+'</b></div><div><span>Submitted</span>'+esc(fd(c.date))+'</div><div><span>Owner</span>'+esc(c.owner||'—')+'</div></div></section>'+
   '<section class="panel"><h3>Where it is now</h3>'+track(c)+nextStep(c)+lastLine+'</section>'+dtabs+
   (S.dtab==='minutes'?MINTAB:'<section class="panel"><h3>Vehicle scope and planned start</h3><div class="pick">'+CFGS.map(([k,l])=>'<label><input type="checkbox" data-cfg="'+k+'" data-id="'+id+'"'+(cfgs(c).includes(k)?' checked':'')+'>'+l+'</label>').join('')+'</div><div class="grid"><label>Planned start of the change (preliminary)<select data-f="sop" data-id="'+id+'"><option value="">Not defined yet</option>'+sopOpts(c.sop)+'</select></label><div class="kpis" style="grid-template-columns:1fr"><div><span>Vehicles in scope · full year '+tt.ry+'</span><b>'+(tt.vol?tt.vol.toLocaleString('en-GB'):'—')+'</b></div></div></div></section><div class="rail"><section class="panel rs '+stageClass(c,1)+'"><h3>Step 1 · Design pre-check</h3><p class="muted small">Design confirms the change can be done and that it fits in the digital mock-up, before any other department spends time on it.</p>'+deptRow(c,'design','Design',dmu)+'</section>'+
@@ -524,6 +524,74 @@ function vDetail(c){
     (S.del?'<span class="small">Delete for good? This cannot be undone.</span><button class="danger" data-act="delyes" data-id="'+id+'">Delete</button><button data-act="delno">Keep</button>':'<button class="danger" data-act="delask">Delete change</button>')+'</div></div>';
 }
 
+/* ---------- One Page PDF, built in the page without a library ---------- */
+function pdfEnc(s){s=String(s??'').normalize('NFD').replace(/[̀-ͯ]/g,'');const M={'€':'\x80','–':'\x96','—':'\x97','’':'\x92','‘':'\x91','“':'\x93','”':'\x94','−':'-','…':'\x85','✔':'','▶':'>','→':'->','×':'x'};let o='';for(const ch of s){const c=ch.charCodeAt(0);o+=M[ch]!==undefined?M[ch]:(c>=32&&c<256)?ch:(c===10||c===9?' ':'?')}return o}
+function PDF(){const ops=[],H=842,cv=document.createElement('canvas').getContext('2d'),n=v=>(+v).toFixed(2);
+  const A={
+    w(t,size,bold){cv.font=(bold?'bold ':'')+size+'px Helvetica, Arial, sans-serif';return cv.measureText(t).width},
+    fill(c){ops.push(n(c[0]/255)+' '+n(c[1]/255)+' '+n(c[2]/255)+' rg')},
+    stroke(c){ops.push(n(c[0]/255)+' '+n(c[1]/255)+' '+n(c[2]/255)+' RG')},
+    rect(x,y,w,h){ops.push(n(x)+' '+n(H-y-h)+' '+n(w)+' '+n(h)+' re f')},
+    line(x1,y1,x2,y2,lw){ops.push(n(lw||1)+' w '+n(x1)+' '+n(H-y1)+' m '+n(x2)+' '+n(H-y2)+' l S')},
+    circ(x,y,r){const k=.5523*r,Y=H-y;ops.push([x+r,Y,'m',x+r,Y+k,x+k,Y+r,x,Y+r,'c',x-k,Y+r,x-r,Y+k,x-r,Y,'c',x-r,Y-k,x-k,Y-r,x,Y-r,'c',x+k,Y-r,x+r,Y-k,x+r,Y,'c f'].map(v=>typeof v==='number'?n(v):v).join(' '))},
+    fit(t,size,bold,maxw){t=String(t??'');if(!maxw||A.w(t,size,bold)<=maxw)return t;while(t.length>2&&A.w(t+'…',size,bold)>maxw)t=t.slice(0,-1).trimEnd();return t+'…'},
+    text(t,x,y,size,bold,align,maxw){t=A.fit(t,size,bold,maxw);const w=A.w(t,size,bold);if(align==='r')x-=w;else if(align==='c')x-=w/2;ops.push('BT /'+(bold?'F2':'F1')+' '+n(size)+' Tf '+n(x)+' '+n(H-y)+' Td ('+pdfEnc(t).replace(/([\\()])/g,'\\$1')+') Tj ET')},
+    wrap(t,size,bold,maxw,maxLines){const words=String(t??'').replace(/\s+/g,' ').trim().split(' '),L=[];let cur='';for(const wd of words){const nx=cur?cur+' '+wd:wd;if(A.w(nx,size,bold)<=maxw||!cur)cur=nx;else{L.push(cur);cur=wd}}if(cur)L.push(cur);if(maxLines&&L.length>maxLines){const keep=L.slice(0,maxLines);keep[maxLines-1]=A.fit(keep[maxLines-1]+' '+L[maxLines],size,bold,maxw-4).replace(/…?$/,'…');return keep}return L},
+    para(t,x,y,size,bold,maxw,maxLines,lh){A.wrap(t,size,bold,maxw,maxLines).forEach(l=>{A.text(l,x,y,size,bold,null,maxw);y+=lh});return y},
+    image(x,y,w,h){ops.push('q '+n(w)+' 0 0 '+n(h)+' '+n(x)+' '+n(H-y-h)+' cm /Im1 Do Q')},
+    build(img){const enc=str=>{const u=new Uint8Array(str.length);for(let i=0;i<str.length;i++)u[i]=str.charCodeAt(i)&255;return u},content=ops.join('\n');
+      const objs=['<< /Type /Catalog /Pages 2 0 R >>','<< /Type /Pages /Kids [3 0 R] /Count 1 >>','<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 4 0 R /F2 5 0 R >>'+(img?' /XObject << /Im1 7 0 R >>':'')+' >> /Contents 6 0 R >>',
+        '<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica /Encoding /WinAnsiEncoding >>','<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Bold /Encoding /WinAnsiEncoding >>',
+        {head:'<< /Length '+content.length+' >>',body:enc(content)}];
+      if(img)objs.push({head:'<< /Type /XObject /Subtype /Image /Width '+img.w+' /Height '+img.h+' /ColorSpace /DeviceRGB /BitsPerComponent 8 /Filter /DCTDecode /Length '+img.u.length+' >>',body:img.u});
+      const parts=[enc('%PDF-1.4\n')],offs=[];let pos=parts[0].length;const push=u=>{parts.push(u);pos+=u.length};
+      objs.forEach((o,i)=>{offs.push(pos);if(typeof o==='string')push(enc((i+1)+' 0 obj\n'+o+'\nendobj\n'));else{push(enc((i+1)+' 0 obj\n'+o.head+'\nstream\n'));push(o.body);push(enc('\nendstream\nendobj\n'))}});
+      const xref=pos;push(enc('xref\n0 '+(objs.length+1)+'\n0000000000 65535 f \n'+offs.map(o=>String(o).padStart(10,'0')+' 00000 n \n').join('')+'trailer\n<< /Size '+(objs.length+1)+' /Root 1 0 R >>\nstartxref\n'+xref+'\n%%EOF\n'));
+      const out=new Uint8Array(pos);let k=0;parts.forEach(u=>{out.set(u,k);k+=u.length});return out}};
+  return A}
+function sketchJpeg(c){return new Promise(res=>{if(!blobOk(c.photo))return res(null);const im=new Image();let done=false;const fin=v=>{if(!done){done=true;res(v)}};
+  im.onload=()=>{try{const W=960,Hh=600,cv=document.createElement('canvas');cv.width=W;cv.height=Hh;const g=cv.getContext('2d');g.fillStyle='#fff';g.fillRect(0,0,W,Hh);const nw=im.naturalWidth||640,nh=im.naturalHeight||400,k=Math.min(W/nw,Hh/nh),w=nw*k,h=nh*k;g.drawImage(im,(W-w)/2,(Hh-h)/2,w,h);
+    const b=atob(cv.toDataURL('image/jpeg',.88).split(',')[1]),u=new Uint8Array(b.length);for(let i=0;i<b.length;i++)u[i]=b.charCodeAt(i);fin({u,w:W,h:Hh})}catch(e){fin(null)}};
+  im.onerror=()=>fin(null);im.src=(window.__BLOBS&&window.__BLOBS[c.photo])||'/_blob/'+c.photo;setTimeout(()=>fin(null),5000)})}
+function verdict(c){const s=c.stav,d=c.decision||{},G=[27,116,70],R=[174,47,41];
+  if(s==='released')return {t:'APPROVED',sub:'Documentation released'+(d.released?' on '+fd(d.released):'')+'. The change is closed.',col:G};
+  if(s==='docs')return {t:'APPROVED',sub:'Approved'+(d.date?' on '+fd(d.date):'')+'. Documentation release by Design is in preparation.',col:G};
+  if(s==='rejected')return {t:'REJECTED',sub:(d.date?'Rejected on '+fd(d.date)+'. ':'')+(d.reason||''),col:R};
+  return {t:'IN PROGRESS',sub:'Stage '+(SIDX[s]+1)+' of 7: '+SNAME[s]+'. '+waitText(c)+'. '+daysIn(c)+' days in this stage.',col:(s==='new'||s==='release1'||s==='approval')?[143,86,6]:[11,92,171]}}
+async function onePage(c){const P=PDF(),M=40,W=515,INK=[21,32,43],MUT=[96,108,120],LINE=[205,212,220],G=[27,116,70],B=[11,92,171],R=[174,47,41],AM=[143,86,6],img=await sketchJpeg(c),v=verdict(c),tt=totals(c);
+  const label=(t,x,y)=>{P.fill(MUT);P.text(String(t).toUpperCase(),x,y,6.5,true)};
+  P.fill(MUT);P.text('CHANGE REQUEST · ONE PAGE',M,48,7.5,true);P.fill(INK);P.text(c.no+' · rev '+rev(c),M+W,48,10,true,'r');
+  let y=P.para(c.title,M,70,17,true,W,2,21)-8;
+  P.fill(v.col);P.rect(M,y,W,42);P.fill([255,255,255]);P.text(v.t,M+12,y+19,15,true);P.text(v.sub,M+12,y+33,8.5,false,null,W-24);y+=42;
+  const SH=['Request','Pre-check','Release 1','Technical','Commercial','Approval','Docs'],x0=M+34,dx=(W-68)/6,ly=y+22;
+  STAGES.forEach((st,i)=>{const cl=stageClass(c,i),col=cl==='done'?G:cl==='now'?B:cl==='rej'?R:LINE,x=x0+i*dx;if(i){P.stroke(cl==='done'||cl==='now'?G:cl==='rej'?R:LINE);P.line(x-dx+7,ly,x-7,ly,2)}P.fill(col);P.circ(x,ly,cl==='now'||cl==='rej'?7:5.5);if(!cl){P.fill([255,255,255]);P.circ(x,ly,3.5)}P.fill(cl==='now'?B:cl==='rej'?R:cl==='done'?INK:MUT);P.text(SH[i],x,ly+19,7.5,cl==='now'||cl==='rej','c')});
+  y=ly+34;
+  const ih=150,iw=240;if(img)P.image(M,y,iw,ih);else{P.fill([238,241,245]);P.rect(M,y,iw,ih);P.fill(MUT);P.text('No image',M+iw/2,y+ih/2,9,false,'c')}
+  P.stroke(LINE);P.line(M,y,M+iw,y,.6);P.line(M,y+ih,M+iw,y+ih,.6);P.line(M,y,M,y+ih,.6);P.line(M+iw,y,M+iw,y+ih,.6);
+  const facts=[['Department',DNAME[c.dept]||'—'],['Requester',c.requester||'—'],['Change type',c.type||'—'],['Urgency',c.urgency||'Normal'],['Vehicle / project',c.vehicle||'—'],['Part / drawing',c.part||'—'],['Submitted',fd(c.date)],['Owner',c.owner||'—'],['Planned start',c.sop?sopLabel(c.sop):'Not defined'],['Next meeting',open(c)?(c.week?wkLabel(c.week):'Not planned'):'—']],fx=M+iw+18,fw=(W-iw-18)/2;
+  facts.forEach((f,i)=>{const x=fx+(i%2)*fw,yy=y+8+Math.floor(i/2)*27;label(f[0],x,yy);P.fill(INK);P.text(f[1],x,yy+11,9,false,null,fw-8)});
+  label('Vehicle scope',fx,y+8+5*27);P.fill(INK);P.text(scopeText(c)||'Not defined',fx,y+19+5*27,9,false,null,fw*2-8);
+  y+=ih+18;label('Problem / root cause',M,y);P.fill(INK);y=P.para(c.problem||'—',M,y+12,9.5,false,W,4,12.5)+4;
+  label('Proposed change',M,y);P.fill(INK);y=P.para(c.proposal||'Not known yet',M,y+12,9.5,false,W,3,12.5)+6;
+  label('Department inputs',M,y);y+=6;const C=[0,86,182,268,326,378,424],hd=['Department','Feasibility','Who','Date','One-off','Per vehicle','Note'];
+  P.fill([238,241,245]);P.rect(M,y,W,13);P.fill(MUT);hd.forEach((h,i)=>P.text(h,M+C[i]+4,y+9,7,true));y+=13;
+  const rows=[['design','Design'],...on(c,TECH),...on(c,COMM)].slice(0,10);
+  rows.forEach(([k,l])=>{const x=inp(c,k),act=waveActive(c,k);let ft=x.f==='ok'?'Feasible':x.f==='cond'?'With conditions':x.f==='no'?'Not feasible':act?(overdue(c,k)?'Open, overdue':'Open'):'Not started',fc=x.f==='ok'?G:x.f==='cond'?AM:x.f==='no'||overdue(c,k)?R:MUT;
+    if(x.reconfirm){ft='Re-confirm';fc=R}if(k==='design'&&x.dmu==='ok')ft+=' · DMU ok';if(k==='design'&&x.dmu==='no'){ft='DMU failed';fc=R}
+    P.fill(INK);P.text(l,M+4,y+10,8.5,true,null,80);P.fill(fc);P.text(ft,M+C[1]+4,y+10,8.5,true,null,92);P.fill(INK);P.text(x.who||'—',M+C[2]+4,y+10,8.5,false,null,82);P.text(x.at?fd(x.at):'—',M+C[3]+4,y+10,8.5,false,null,56);
+    P.text(num(x.oneoff)?money(num(x.oneoff)):'—',M+C[4]+4,y+10,8.5,false,null,56);P.text(num(x.piece)?(num(x.piece)>0?'+':'')+money(num(x.piece)):'—',M+C[5]+4,y+10,8.5,false,null,46);P.fill(MUT);P.text(x.note||'',M+C[6]+4,y+10,7.5,false,null,W-C[6]-6);
+    y+=14;P.stroke(LINE);P.line(M,y,M+W,y,.4)});
+  y+=14;label('Cost estimate · indicative',M,y);y+=6;P.fill([238,241,245]);P.rect(M,y,W,34);
+  [['One-off cost',tt.one?money(tt.one):'—'],['Piece price / vehicle',tt.piece?(tt.piece>0?'+':'')+money(tt.piece):'—'],['Vehicles / year ('+tt.ry+')',tt.vol?tt.vol.toLocaleString('en-GB'):'—'],['Net benefit / year',(tt.ben||(tt.piece&&tt.vol))?money(Math.round(tt.net)):'—'],['Payback',tt.payback!=null?tt.payback.toFixed(1)+' years':'—']].forEach((k,i)=>{const x=M+8+i*(W/5);label(k[0],x,y+12);P.fill(INK);P.text(k[1],x,y+26,10.5,true,null,W/5-12)});
+  y+=48;label('Latest minutes and notes',M,y);y+=4;
+  const es=entries(c);if(!es.length){P.fill(MUT);P.text('No minutes or notes yet.',M,y+12,9)}
+  for(const e of es.slice(0,4)){if(y>748)break;P.fill(MUT);P.text(srcLabel(e)+' · '+fts(e.ts)+(e.who?' · '+e.who:''),M,y+11,7.5,true,null,W);P.fill(INK);y=P.para(e.text,M,y+23,9,false,W,2,12);if(e.next){P.text('Next step: '+e.next,M,y,8.5,true,null,W);y+=12}y+=1}
+  P.stroke(LINE);P.line(M,806,M+W,806,.6);P.fill(MUT);P.text('Generated '+fd(today())+' · Change Management'+(c.example?' · EXAMPLE DATA':''),M,818,7.5);P.text('Cost figures are indicative. Actual costs are reported by Finance.',M+W,818,7.5,false,'r');
+  return P.build(img)}
+async function saveFile(name,bytes,mime){let dl=null;try{dl=window.claude&&window.claude.use?await window.claude.use('downloads'):null}catch(e){}
+  const blob=new Blob([bytes],{type:mime});
+  if(dl&&dl.save){try{await dl.save({filename:name,data:blob});toast('Saved '+name,false,3000)}catch(e){toast(e&&e.code==='declined'?'Download cancelled.':'This view cannot save files.',true)}return}
+  const a=document.createElement('a'),u=URL.createObjectURL(blob);a.href=u;a.download=name;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(u),8000);toast('Downloading '+name,false,3000)}
 function agenda(W){const mine=S.items.filter(c=>c.week===W&&open(c)),carried=W===NOW?S.items.filter(c=>open(c)&&c.week&&c.week<NOW):[];return [...carried,...mine]}
 function vPresent(){const P=S.pres,ids=P.ids.filter(id=>get(id));if(!ids.length){S.pres=null;return vMeeting()}P.i=Math.min(Math.max(P.i,0),ids.length-1);const c=get(ids[P.i]),id=esc(c.id),m=S.min[c.id]||{},zs=(c.minutes||[]).filter(z=>z.week===S.week);
   const late=ALLD.map(d=>d[0]).filter(k=>(k==='design'||inp(c,k).on)&&overdue(c,k));
@@ -570,7 +638,7 @@ function vMeeting(){
   const W=S.week,mine=S.items.filter(c=>c.week===W&&open(c)),carried=W===NOW?S.items.filter(c=>open(c)&&c.week&&c.week<NOW):[];
   const discussed=S.items.filter(c=>(c.minutes||[]).some(z=>z.week===W)&&!(c.week===W&&open(c))&&!carried.includes(c));
   const card=c=>{const m=S.min[c.id]||{},id=esc(c.id),last=(c.minutes||[]).slice(-1)[0],late=['design',...TECH.map(d=>d[0]),...COMM.map(d=>d[0])].filter(k=>(k==='design'||inp(c,k).on)&&overdue(c,k));
-    return '<div class="panel" data-card="'+id+'"><div class="row" style="justify-content:space-between"><h2>'+esc(c.title)+'</h2><button class="link" data-act="open" data-id="'+id+'">Open detail</button></div>'+lead(c)+track(c)+
+    return '<div class="panel" data-card="'+id+'"><div class="row" style="justify-content:space-between"><h2>'+esc(c.title)+'</h2><span class="row"><button class="link" data-act="onepage" data-id="'+id+'">One Page (PDF)</button><button class="link" data-act="open" data-id="'+id+'">Open detail</button></span></div>'+lead(c)+track(c)+
     '<p class="small"><b>'+esc(waitText(c))+'</b>'+(c.owner?' · owner '+esc(c.owner):'')+(c.week<W?' · <span class="pill cm">carried over from '+esc(cw(c.week))+'</span>':'')+(late.length?' · <span class="pill bad">overdue: '+esc(late.map(k=>DNAME[k]).join(', '))+'</span>':'')+'</p>'+
     latestLine(c,'muted')+
     '<label>Minutes<textarea data-m="text" data-id="'+id+'" placeholder="What was agreed">'+esc(m.text||'')+'</textarea></label>'+
@@ -660,6 +728,7 @@ app.addEventListener('click',async e=>{const b=e.target.closest('[data-act]');if
   else if(a==='present'){const ids=agenda(S.week).map(c=>c.id);if(!ids.length)return;S.pres={ids,i:0};try{const r=document.documentElement.requestFullscreen&&document.documentElement.requestFullscreen();if(r&&r.catch)r.catch(()=>{})}catch(e){}render();window.scrollTo(0,0)}
   else if(a==='pnext'||a==='pprev'){S.pres.i+=a==='pnext'?1:-1;render()}
   else if(a==='pexit'){exitPres()}
+  else if(a==='onepage'&&c){b.disabled=true;try{const bytes=await onePage(c);await saveFile(c.no+'-one-page.pdf',bytes,'application/pdf')}catch(err){toast('The PDF could not be created.',true)}b.disabled=false}
   else if(a==='pfinish'){S.rep=true;exitPres();window.scrollTo(0,0)}
   else if(a==='report'){S.rep=!S.rep;render();if(S.rep){const el=document.getElementById('report');if(el)el.scrollIntoView({block:'start'})}}
   else if(a==='repclose'){S.rep=false;render()}
