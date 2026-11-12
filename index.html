@@ -1,0 +1,571 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><style>body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style></head><body>
+<script>
+(function(){
+const SEED={"ex-1": {"example": true, "no": "CR-2026-001", "rev": 0, "title": "Bracket shortened to clear coolant hose", "dept": "production", "requester": "Production line lead", "type": "Production issue", "urgency": "Normal", "vehicle": "City bus 12 m", "part": "BR-40217", "problem": "Bracket BR-40217 collides with the coolant hose during assembly. Operators bend the hose to fit; two hoses were found chafed at end-of-line inspection.", "proposal": "Shorten the bracket arm by 85 mm and move the fixing hole. No change to the hose routing.", "photo": "08bc8a8cca0b539e9141c0fb27f3c57d", "date": "2026-10-19", "stav": "approval", "owner": "Change manager", "target": "", "week": "2026-W46", "inputs": {"design": {"on": true, "f": "ok", "dmu": "ok", "who": "Design engineer", "at": "2026-10-23", "note": "Clearance 18 mm in DMU after change", "due": "2026-10-26"}, "production": {"on": true, "f": "ok", "who": "Production engineer", "at": "2026-10-30", "due": "2026-11-03"}, "quality": {"on": true, "f": "ok", "who": "Quality engineer", "at": "2026-11-02", "note": "Chafing check stays in EOL inspection for 20 vehicles", "due": "2026-11-03"}, "technology": {"on": true, "f": "cond", "who": "Process engineer", "at": "2026-11-03", "oneoff": 1800, "lead": 3, "note": "Welding fixture needs a new stop", "due": "2026-11-03"}, "purchasing": {"on": true, "f": "ok", "who": "Buyer", "at": "2026-11-09", "oneoff": 2500, "piece": -0.4, "lead": 6, "note": "Supplier tooling change, slightly less material", "due": "2026-11-10"}, "logistics": {"on": true, "f": "ok", "who": "Logistics planner", "at": "2026-11-10", "note": "140 old brackets in stock", "due": "2026-11-10"}}, "bc": {"benefit": 9000, "volume": 600, "pros": "Removes rework at the line and the risk of hose damage in the field.", "cons": "Old brackets must be reworked or scrapped."}, "decision": {}, "doc": {}, "minutes": [{"week": "2026-W45", "date": "2026-11-05", "text": "Technical inputs complete. Purchasing waits for the supplier quote.", "next": "Get tooling quote", "who": "Purchasing"}], "log": [{"d": "2026-10-19", "t": "Request submitted"}, {"d": "2026-10-23", "t": "Design feasibility: Feasible"}, {"d": "2026-10-27", "t": "Release 1: released to department inputs"}, {"d": "2026-11-03", "t": "Stage: Commercial assessment"}, {"d": "2026-11-10", "t": "Stage: Final approval"}], "release1": "2026-10-27"}, "ex-2": {"example": true, "no": "CR-2026-002", "rev": 0, "title": "Handrail fixing changed from M6 to M8 rivet nut", "dept": "testing", "requester": "Test engineer", "type": "Quality", "urgency": "Normal", "vehicle": "Intercity 13 m", "part": "HR-11842", "problem": "Handrail fixing loses torque in the vibration test. The M6 rivet nut turns in the side wall profile after 40 % of the test duration.", "proposal": "Replace the M6 rivet nut with an M8 hexagonal rivet nut and adapt the hole in the profile.", "photo": "32b1ac4ea422b87f026841a3dbe36bdb", "date": "2026-10-22", "stav": "commercial", "owner": "Change manager", "target": "", "week": "2026-W46", "inputs": {"design": {"on": true, "f": "ok", "dmu": "ok", "who": "Design engineer", "at": "2026-10-28", "due": "2026-10-29"}, "production": {"on": true, "f": "ok", "who": "Production engineer", "at": "2026-11-04", "note": "New setting tool nose piece needed", "oneoff": 350, "due": "2026-11-06"}, "quality": {"on": true, "f": "cond", "who": "Quality engineer", "at": "2026-11-05", "note": "Torque audit on first 30 vehicles", "due": "2026-11-06"}, "testing": {"on": true, "f": "ok", "who": "Test engineer", "at": "2026-11-06", "oneoff": 4200, "lead": 4, "note": "Repeat vibration test on one sample", "due": "2026-11-06"}, "homologation": {"on": true, "f": "ok", "who": "Homologation engineer", "at": "2026-11-06", "note": "No impact on type approval", "due": "2026-11-06"}, "purchasing": {"on": true, "f": "pending", "due": "2026-11-16", "note": "Preliminary: +0.35 EUR per nut"}, "aftersales": {"on": true, "f": "pending", "due": "2026-11-16"}}, "bc": {"volume": 450}, "decision": {}, "doc": {}, "minutes": [], "log": [{"d": "2026-10-22", "t": "Request submitted"}, {"d": "2026-10-30", "t": "Release 1: released to department inputs"}, {"d": "2026-11-06", "t": "Stage: Commercial assessment"}], "release1": "2026-10-30"}, "ex-3": {"example": true, "no": "CR-2026-003", "rev": 0, "title": "Seat rail spacer material changed to aluminium", "dept": "quality", "requester": "Quality engineer", "type": "Quality", "urgency": "Normal", "vehicle": "City bus 12 m", "part": "SR-30655", "problem": "Plastic spacer (PA6) under the seat rail cracks after about six months in service. 14 field claims in the last quarter.", "proposal": "Change the spacer material from PA6 to AlMg3, same geometry.", "photo": "bc144c7ca0c8b75b6bf122733fb7788d", "date": "2026-10-26", "stav": "technical", "owner": "Change manager", "target": "", "week": "2026-W45", "inputs": {"design": {"on": true, "f": "ok", "dmu": "ok", "who": "Design engineer", "at": "2026-10-30", "due": "2026-11-02"}, "production": {"on": true, "f": "ok", "who": "Production engineer", "at": "2026-11-06", "due": "2026-11-09"}, "quality": {"on": true, "f": "pending", "due": "2026-11-09"}, "testing": {"on": true, "f": "pending", "due": "2026-11-09", "note": "Fatigue test plan in preparation"}, "purchasing": {"on": true, "f": "pending"}, "logistics": {"on": true, "f": "pending"}}, "bc": {}, "decision": {}, "doc": {}, "minutes": [{"week": "2026-W45", "date": "2026-11-05", "text": "Quality still collecting claim data. Testing proposes a short fatigue test.", "next": "Confirm test scope", "who": "Testing"}], "log": [{"d": "2026-10-26", "t": "Request submitted"}, {"d": "2026-11-02", "t": "Release 1: released to department inputs"}, {"d": "2026-11-06", "t": "Production feasibility: Feasible"}], "release1": "2026-11-02"}, "ex-4": {"example": true, "no": "CR-2026-004", "rev": 0, "title": "Door sensor harness branch extended by 120 mm", "dept": "electronics", "requester": "Electrical engineer", "type": "Production issue", "urgency": "Normal", "vehicle": "Intercity 13 m", "part": "WH-77310", "problem": "The harness branch to the rear door sensor is under tension when the door is fully open. Three connectors were pulled out during door adjustment.", "proposal": "Extend the branch by 120 mm and add one clip to hold the loop.", "photo": "cca76477cdfa7564119e02a88c27e768", "date": "2026-11-02", "stav": "technical", "owner": "Change manager", "target": "", "week": "2026-W46", "inputs": {"design": {"on": true, "f": "ok", "dmu": "ok", "who": "Design engineer", "at": "2026-11-05", "due": "2026-11-09"}, "electronics": {"on": true, "f": "ok", "who": "Electrical engineer", "at": "2026-11-10", "due": "2026-11-17"}, "production": {"on": true, "f": "pending", "due": "2026-11-17"}, "quality": {"on": true, "f": "pending", "due": "2026-11-17"}, "testing": {"on": true, "f": "cond", "who": "Test engineer", "at": "2026-11-11", "note": "Door cycle test, 5 000 cycles", "oneoff": 900, "lead": 2, "due": "2026-11-17"}, "purchasing": {"on": true, "f": "pending"}}, "bc": {}, "decision": {}, "doc": {}, "minutes": [], "log": [{"d": "2026-11-02", "t": "Request submitted"}, {"d": "2026-11-09", "t": "Release 1: released to department inputs"}, {"d": "2026-11-10", "t": "Electronics feasibility: Feasible"}], "release1": "2026-11-09"}, "ex-5": {"example": true, "no": "CR-2026-005", "rev": 0, "title": "Additional drain hole in battery box", "dept": "quality", "requester": "Quality engineer", "type": "Quality", "urgency": "Normal", "vehicle": "City bus 12 m", "part": "BB-52008", "problem": "Water stays in the battery box after the wash test. Corrosion found on the battery clamps at the 3-month audit.", "proposal": "Add a 12 mm drain hole at the lowest point of the box floor, with a rubber grommet.", "photo": "5ea17b3c2852b698038446be1282199c", "date": "2026-11-04", "stav": "release1", "owner": "Change manager", "target": "", "week": "2026-W46", "inputs": {"design": {"on": true, "f": "ok", "dmu": "ok", "who": "Design engineer", "at": "2026-11-11", "note": "Hole position clear of the cross member", "due": "2026-11-11"}, "production": {"on": true, "f": "pending"}, "quality": {"on": true, "f": "pending"}, "testing": {"on": true, "f": "pending"}, "purchasing": {"on": true, "f": "pending"}}, "bc": {}, "decision": {}, "doc": {}, "minutes": [], "log": [{"d": "2026-11-04", "t": "Request submitted"}, {"d": "2026-11-05", "t": "Sent to Design pre-check"}, {"d": "2026-11-11", "t": "Stage: Release 1"}]}, "ex-6": {"example": true, "no": "CR-2026-006", "rev": 0, "title": "AdBlue filler access cover enlarged", "dept": "aftersales", "requester": "Service engineer", "type": "Cost saving", "urgency": "Normal", "vehicle": "Intercity 13 m", "part": "SP-61490", "problem": "The access opening to the AdBlue filler is too small for a hand with a glove. Filter replacement takes 25 minutes because the side panel has to be removed.", "proposal": "Enlarge the opening from 110 x 100 mm to 180 x 150 mm and fit a larger cover.", "photo": "fffcac93554dc7bb32ac3a83c09deca3", "date": "2026-11-10", "stav": "precheck", "owner": "Change manager", "target": "", "week": "2026-W47", "inputs": {"design": {"on": true, "f": "ok", "dmu": "pending", "who": "Design engineer", "at": "2026-11-12", "due": "2026-11-18"}, "production": {"on": true, "f": "pending"}, "quality": {"on": true, "f": "pending"}, "homologation": {"on": true, "f": "pending"}, "purchasing": {"on": true, "f": "pending"}, "aftersales": {"on": true, "f": "pending"}}, "bc": {}, "decision": {}, "doc": {}, "minutes": [], "log": [{"d": "2026-11-10", "t": "Request submitted"}, {"d": "2026-11-11", "t": "Sent to Design pre-check"}]}};window.__BLOBS={"08bc8a8cca0b539e9141c0fb27f3c57d": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NDAgNDAwIiBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiPjxyZWN0IHdpZHRoPSI2NDAiIGhlaWdodD0iNDAwIiBmaWxsPSIjZmZmZmZmIi8+PHJlY3QgeD0iNiIgeT0iNiIgd2lkdGg9IjYyOCIgaGVpZ2h0PSIzODgiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzFjMjczMyIgc3Ryb2tlLXdpZHRoPSIyIi8+PHRleHQgeD0iMjQiIHk9IjQwIiBmaWxsPSIjMWMyNzMzIiBmb250LXNpemU9IjIwIiBmb250LXdlaWdodD0iYm9sZCI+QnJhY2tldCB2cy4gY29vbGFudCBob3NlPC90ZXh0PjxyZWN0IHg9IjYwIiB5PSI4MCIgd2lkdGg9IjMwIiBoZWlnaHQ9IjI0MCIgZmlsbD0iI2Q5ZGVlNCIgc3Ryb2tlPSIjMWMyNzMzIiBzdHJva2Utd2lkdGg9IjIiLz48dGV4dCB4PSI0MCIgeT0iMzQwIiBmaWxsPSIjOGE5N2E1IiBmb250LXNpemU9IjE0IiBmb250LXdlaWdodD0ibm9ybWFsIj5mcmFtZTwvdGV4dD48cGF0aCBkPSJNOTAgMTUwIEgzMDAgVjIzMCBIOTAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzFjMjczMyIgc3Ryb2tlLXdpZHRoPSI1Ii8+PHRleHQgeD0iMTUwIiB5PSIxNDAiIGZpbGw9IiMxYzI3MzMiIGZvbnQtc2l6ZT0iMTUiIGZvbnQtd2VpZ2h0PSJub3JtYWwiPmJyYWNrZXQgKGN1cnJlbnQpPC90ZXh0PjxwYXRoIGQ9Ik0yNDAgMzAwIEMzMDAgMjAwIDM4MCAxOTAgNTYwIDE1MCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjOGE5N2E1IiBzdHJva2Utd2lkdGg9IjM0IiBzdHJva2UtbGluZWNhcD0icm91bmQiLz48dGV4dCB4PSI0NTAiIHk9IjEyNSIgZmlsbD0iIzFjMjczMyIgZm9udC1zaXplPSIxNSIgZm9udC13ZWlnaHQ9Im5vcm1hbCI+Y29vbGFudCBob3NlPC90ZXh0PjxjaXJjbGUgY3g9IjMxMiIgY3k9IjIxMiIgcj0iMzQiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI2MyMzUyZCIgc3Ryb2tlLXdpZHRoPSI0Ii8+PHRleHQgeD0iMzUwIiB5PSIyNjUiIGZpbGw9IiNjMjM1MmQiIGZvbnQtc2l6ZT0iMTciIGZvbnQtd2VpZ2h0PSJib2xkIj5jb2xsaXNpb248L3RleHQ+PHBhdGggZD0iTTkwIDE1MCBIMjE1IFYyMzAgSDkwIiBmaWxsPSJub25lIiBzdHJva2U9IiMwYjVjYWIiIHN0cm9rZS13aWR0aD0iMyIgc3Ryb2tlLWRhc2hhcnJheT0iOSA2Ii8+PHRleHQgeD0iMTA0IiB5PSIyMDAiIGZpbGw9IiMwYjVjYWIiIGZvbnQtc2l6ZT0iMTUiIGZvbnQtd2VpZ2h0PSJib2xkIj5wcm9wb3NhbDogLTg1IG1tPC90ZXh0PjxyZWN0IHg9IjYiIHk9IjM1MiIgd2lkdGg9IjYyOCIgaGVpZ2h0PSI0MiIgZmlsbD0iI2VlZjJmNiIgc3Ryb2tlPSIjMWMyNzMzIiBzdHJva2Utd2lkdGg9IjIiLz48dGV4dCB4PSIyMCIgeT0iMzc5IiBmaWxsPSIjMWMyNzMzIiBmb250LXNpemU9IjE1IiBmb250LXdlaWdodD0iYm9sZCI+RVhBTVBMRSBTS0VUQ0ggwrcgYnJhY2tldCBzaG9ydGVuZWQgdG8gY2xlYXIgaG9zZTwvdGV4dD48L3N2Zz4=", "5ea17b3c2852b698038446be1282199c": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NDAgNDAwIiBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiPjxyZWN0IHdpZHRoPSI2NDAiIGhlaWdodD0iNDAwIiBmaWxsPSIjZmZmZmZmIi8+PHJlY3QgeD0iNiIgeT0iNiIgd2lkdGg9IjYyOCIgaGVpZ2h0PSIzODgiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzFjMjczMyIgc3Ryb2tlLXdpZHRoPSIyIi8+PHRleHQgeD0iMjQiIHk9IjQwIiBmaWxsPSIjMWMyNzMzIiBmb250LXNpemU9IjIwIiBmb250LXdlaWdodD0iYm9sZCI+QmF0dGVyeSBib3gsIHdhdGVyIHN0YXlzIGluc2lkZTwvdGV4dD48cGF0aCBkPSJNMTIwIDkwIFYyOTAgSDUyMCBWOTAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzFjMjczMyIgc3Ryb2tlLXdpZHRoPSI1Ii8+PHJlY3QgeD0iMTcwIiB5PSIxMzAiIHdpZHRoPSIxMzAiIGhlaWdodD0iMTIwIiBmaWxsPSIjZDlkZWU0IiBzdHJva2U9IiMxYzI3MzMiIHN0cm9rZS13aWR0aD0iMiIvPjxyZWN0IHg9IjM0MCIgeT0iMTMwIiB3aWR0aD0iMTMwIiBoZWlnaHQ9IjEyMCIgZmlsbD0iI2Q5ZGVlNCIgc3Ryb2tlPSIjMWMyNzMzIiBzdHJva2Utd2lkdGg9IjIiLz48dGV4dCB4PSIyMDAiIHk9IjE5NSIgZmlsbD0iIzFjMjczMyIgZm9udC1zaXplPSIxNSIgZm9udC13ZWlnaHQ9Im5vcm1hbCI+YmF0dGVyeTwvdGV4dD48dGV4dCB4PSIzNzAiIHk9IjE5NSIgZmlsbD0iIzFjMjczMyIgZm9udC1zaXplPSIxNSIgZm9udC13ZWlnaHQ9Im5vcm1hbCI+YmF0dGVyeTwvdGV4dD48cmVjdCB4PSIxMjMiIHk9IjI2MiIgd2lkdGg9IjM5NCIgaGVpZ2h0PSIyNiIgZmlsbD0iIzljYzdlZSIvPjx0ZXh0IHg9IjE5MCIgeT0iMjgxIiBmaWxsPSIjYzIzNTJkIiBmb250LXNpemU9IjE1IiBmb250LXdlaWdodD0iYm9sZCI+c3RhbmRpbmcgd2F0ZXIgYWZ0ZXIgd2FzaCB0ZXN0PC90ZXh0PjxjaXJjbGUgY3g9IjMyMCIgY3k9IjI5MCIgcj0iMTMiIGZpbGw9IiNmZmZmZmYiIHN0cm9rZT0iIzBiNWNhYiIgc3Ryb2tlLXdpZHRoPSI0Ii8+PHBhdGggZD0iTTMyMCAzMDYgVjMzNiIgc3Ryb2tlPSIjMGI1Y2FiIiBzdHJva2Utd2lkdGg9IjMiIHN0cm9rZS1kYXNoYXJyYXk9IjYgNSIvPjx0ZXh0IHg9IjM0MCIgeT0iMzMwIiBmaWxsPSIjMGI1Y2FiIiBmb250LXNpemU9IjE1IiBmb250LXdlaWdodD0iYm9sZCI+cHJvcG9zYWw6IGRyYWluIGhvbGUgw5gxMjwvdGV4dD48cmVjdCB4PSI2IiB5PSIzNTIiIHdpZHRoPSI2MjgiIGhlaWdodD0iNDIiIGZpbGw9IiNlZWYyZjYiIHN0cm9rZT0iIzFjMjczMyIgc3Ryb2tlLXdpZHRoPSIyIi8+PHRleHQgeD0iMjAiIHk9IjM3OSIgZmlsbD0iIzFjMjczMyIgZm9udC1zaXplPSIxNSIgZm9udC13ZWlnaHQ9ImJvbGQiPkVYQU1QTEUgU0tFVENIIMK3IGFkZGl0aW9uYWwgZHJhaW4gaG9sZSBpbiBib3ggZmxvb3I8L3RleHQ+PC9zdmc+", "cca76477cdfa7564119e02a88c27e768": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NDAgNDAwIiBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiPjxyZWN0IHdpZHRoPSI2NDAiIGhlaWdodD0iNDAwIiBmaWxsPSIjZmZmZmZmIi8+PHJlY3QgeD0iNiIgeT0iNiIgd2lkdGg9IjYyOCIgaGVpZ2h0PSIzODgiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzFjMjczMyIgc3Ryb2tlLXdpZHRoPSIyIi8+PHRleHQgeD0iMjQiIHk9IjQwIiBmaWxsPSIjMWMyNzMzIiBmb250LXNpemU9IjIwIiBmb250LXdlaWdodD0iYm9sZCI+RG9vciBzZW5zb3IgaGFybmVzcyB1bmRlciB0ZW5zaW9uPC90ZXh0PjxyZWN0IHg9IjYwIiB5PSI4MCIgd2lkdGg9IjIyMCIgaGVpZ2h0PSIyNTAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzFjMjczMyIgc3Ryb2tlLXdpZHRoPSI0Ii8+PHRleHQgeD0iMTIwIiB5PSIxMTAiIGZpbGw9IiMxYzI3MzMiIGZvbnQtc2l6ZT0iMTUiIGZvbnQtd2VpZ2h0PSJub3JtYWwiPmRvb3IgbGVhZjwvdGV4dD48cGF0aCBkPSJNMjgwIDkwIFYzMzAiIHN0cm9rZT0iIzFjMjczMyIgc3Ryb2tlLXdpZHRoPSI4Ii8+PHJlY3QgeD0iNDMwIiB5PSIxNTAiIHdpZHRoPSIxMzAiIGhlaWdodD0iNjAiIGZpbGw9IiNkOWRlZTQiIHN0cm9rZT0iIzFjMjczMyIgc3Ryb2tlLXdpZHRoPSIyIi8+PHRleHQgeD0iNDUyIiB5PSIxODYiIGZpbGw9IiMxYzI3MzMiIGZvbnQtc2l6ZT0iMTUiIGZvbnQtd2VpZ2h0PSJub3JtYWwiPmNvbm5lY3RvcjwvdGV4dD48Y2lyY2xlIGN4PSIxNzAiIGN5PSIyMzAiIHI9IjE0IiBmaWxsPSIjMWMyNzMzIi8+PHRleHQgeD0iMTIwIiB5PSIyNzAiIGZpbGw9IiMxYzI3MzMiIGZvbnQtc2l6ZT0iMTUiIGZvbnQtd2VpZ2h0PSJub3JtYWwiPnNlbnNvcjwvdGV4dD48cGF0aCBkPSJNMTg0IDIzMCBMNDMwIDE4MCIgc3Ryb2tlPSIjYzIzNTJkIiBzdHJva2Utd2lkdGg9IjQiLz48dGV4dCB4PSIyNTAiIHk9IjE3MiIgZmlsbD0iI2MyMzUyZCIgZm9udC1zaXplPSIxNSIgZm9udC13ZWlnaHQ9ImJvbGQiPnRpZ2h0IGF0IDkwwrAgb3BlbjwvdGV4dD48cGF0aCBkPSJNMTg0IDIzMCBDMjYwIDMyMCAzODAgMzAwIDQzMCAxOTAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzBiNWNhYiIgc3Ryb2tlLXdpZHRoPSI0IiBzdHJva2UtZGFzaGFycmF5PSI5IDYiLz48dGV4dCB4PSIzMDAiIHk9IjMyMiIgZmlsbD0iIzBiNWNhYiIgZm9udC1zaXplPSIxNSIgZm9udC13ZWlnaHQ9ImJvbGQiPnByb3Bvc2FsOiArMTIwIG1tIGxvb3A8L3RleHQ+PHJlY3QgeD0iNiIgeT0iMzUyIiB3aWR0aD0iNjI4IiBoZWlnaHQ9IjQyIiBmaWxsPSIjZWVmMmY2IiBzdHJva2U9IiMxYzI3MzMiIHN0cm9rZS13aWR0aD0iMiIvPjx0ZXh0IHg9IjIwIiB5PSIzNzkiIGZpbGw9IiMxYzI3MzMiIGZvbnQtc2l6ZT0iMTUiIGZvbnQtd2VpZ2h0PSJib2xkIj5FWEFNUExFIFNLRVRDSCDCtyBoYXJuZXNzIGJyYW5jaCBleHRlbmRlZDwvdGV4dD48L3N2Zz4=", "32b1ac4ea422b87f026841a3dbe36bdb": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NDAgNDAwIiBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiPjxyZWN0IHdpZHRoPSI2NDAiIGhlaWdodD0iNDAwIiBmaWxsPSIjZmZmZmZmIi8+PHJlY3QgeD0iNiIgeT0iNiIgd2lkdGg9IjYyOCIgaGVpZ2h0PSIzODgiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzFjMjczMyIgc3Ryb2tlLXdpZHRoPSIyIi8+PHRleHQgeD0iMjQiIHk9IjQwIiBmaWxsPSIjMWMyNzMzIiBmb250LXNpemU9IjIwIiBmb250LXdlaWdodD0iYm9sZCI+SGFuZHJhaWwgZml4aW5nIGxvb3NlbnMgaW4gdGVzdDwvdGV4dD48cmVjdCB4PSI2MCIgeT0iMjMwIiB3aWR0aD0iNTIwIiBoZWlnaHQ9IjMwIiBmaWxsPSIjZDlkZWU0IiBzdHJva2U9IiMxYzI3MzMiIHN0cm9rZS13aWR0aD0iMiIvPjx0ZXh0IHg9IjQ3MCIgeT0iMjg1IiBmaWxsPSIjOGE5N2E1IiBmb250LXNpemU9IjE0IiBmb250LXdlaWdodD0ibm9ybWFsIj5zaWRlIHdhbGwgcHJvZmlsZTwvdGV4dD48cGF0aCBkPSJNMTUwIDIzMCBWMTEwIEg0OTAgVjIzMCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMWMyNzMzIiBzdHJva2Utd2lkdGg9IjE0IiBzdHJva2UtbGluZWNhcD0icm91bmQiLz48dGV4dCB4PSIyODAiIHk9Ijk4IiBmaWxsPSIjMWMyNzMzIiBmb250LXNpemU9IjE1IiBmb250LXdlaWdodD0ibm9ybWFsIj5oYW5kcmFpbDwvdGV4dD48Y2lyY2xlIGN4PSIxNTAiIGN5PSIyNDUiIHI9IjI0IiBmaWxsPSJub25lIiBzdHJva2U9IiNjMjM1MmQiIHN0cm9rZS13aWR0aD0iNCIvPjx0ZXh0IHg9IjYwIiB5PSIyMTUiIGZpbGw9IiNjMjM1MmQiIGZvbnQtc2l6ZT0iMTUiIGZvbnQtd2VpZ2h0PSJib2xkIj5NNiByaXZldCBudXQ8L3RleHQ+PGNpcmNsZSBjeD0iNDkwIiBjeT0iMjQ1IiByPSIyNCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMGI1Y2FiIiBzdHJva2Utd2lkdGg9IjQiIHN0cm9rZS1kYXNoYXJyYXk9IjggNSIvPjx0ZXh0IHg9IjQxMCIgeT0iMjE1IiBmaWxsPSIjMGI1Y2FiIiBmb250LXNpemU9IjE1IiBmb250LXdlaWdodD0iYm9sZCI+cHJvcG9zYWw6IE04PC90ZXh0Pjx0ZXh0IHg9IjE5MCIgeT0iMzIwIiBmaWxsPSIjYzIzNTJkIiBmb250LXNpemU9IjE1IiBmb250LXdlaWdodD0ibm9ybWFsIj50b3JxdWUgbG9zcyBhZnRlciB2aWJyYXRpb24gdGVzdDwvdGV4dD48cmVjdCB4PSI2IiB5PSIzNTIiIHdpZHRoPSI2MjgiIGhlaWdodD0iNDIiIGZpbGw9IiNlZWYyZjYiIHN0cm9rZT0iIzFjMjczMyIgc3Ryb2tlLXdpZHRoPSIyIi8+PHRleHQgeD0iMjAiIHk9IjM3OSIgZmlsbD0iIzFjMjczMyIgZm9udC1zaXplPSIxNSIgZm9udC13ZWlnaHQ9ImJvbGQiPkVYQU1QTEUgU0tFVENIIMK3IHJpdmV0IG51dCBNNiByZXBsYWNlZCBieSBNODwvdGV4dD48L3N2Zz4=", "fffcac93554dc7bb32ac3a83c09deca3": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NDAgNDAwIiBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiPjxyZWN0IHdpZHRoPSI2NDAiIGhlaWdodD0iNDAwIiBmaWxsPSIjZmZmZmZmIi8+PHJlY3QgeD0iNiIgeT0iNiIgd2lkdGg9IjYyOCIgaGVpZ2h0PSIzODgiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzFjMjczMyIgc3Ryb2tlLXdpZHRoPSIyIi8+PHRleHQgeD0iMjQiIHk9IjQwIiBmaWxsPSIjMWMyNzMzIiBmb250LXNpemU9IjIwIiBmb250LXdlaWdodD0iYm9sZCI+QWRCbHVlIGZpbGxlciwgYWNjZXNzIHRvbyBzbWFsbDwvdGV4dD48cmVjdCB4PSI3MCIgeT0iODAiIHdpZHRoPSI1MDAiIGhlaWdodD0iMjUwIiBmaWxsPSIjZWVmMmY2IiBzdHJva2U9IiMxYzI3MzMiIHN0cm9rZS13aWR0aD0iMyIvPjx0ZXh0IHg9IjkwIiB5PSIxMTAiIGZpbGw9IiM4YTk3YTUiIGZvbnQtc2l6ZT0iMTQiIGZvbnQtd2VpZ2h0PSJub3JtYWwiPnNpZGUgcGFuZWw8L3RleHQ+PHJlY3QgeD0iMjYwIiB5PSIxNTAiIHdpZHRoPSIxMTAiIGhlaWdodD0iMTAwIiBmaWxsPSIjZmZmZmZmIiBzdHJva2U9IiNjMjM1MmQiIHN0cm9rZS13aWR0aD0iNCIvPjx0ZXh0IHg9IjIzMiIgeT0iMTQwIiBmaWxsPSIjYzIzNTJkIiBmb250LXNpemU9IjE1IiBmb250LXdlaWdodD0iYm9sZCI+Y3VycmVudCAxMTAgw5cgMTAwPC90ZXh0PjxyZWN0IHg9IjIyNSIgeT0iMTMwIiB3aWR0aD0iMTgwIiBoZWlnaHQ9IjE1MCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMGI1Y2FiIiBzdHJva2Utd2lkdGg9IjMiIHN0cm9rZS1kYXNoYXJyYXk9IjkgNiIvPjx0ZXh0IHg9IjIzOCIgeT0iMzA0IiBmaWxsPSIjMGI1Y2FiIiBmb250LXNpemU9IjE1IiBmb250LXdlaWdodD0iYm9sZCI+cHJvcG9zYWwgMTgwIMOXIDE1MDwvdGV4dD48Y2lyY2xlIGN4PSIzMTUiIGN5PSIyMDAiIHI9IjI2IiBmaWxsPSIjOWNjN2VlIiBzdHJva2U9IiMxYzI3MzMiIHN0cm9rZS13aWR0aD0iMyIvPjx0ZXh0IHg9IjQyMCIgeT0iMjA1IiBmaWxsPSIjMWMyNzMzIiBmb250LXNpemU9IjE1IiBmb250LXdlaWdodD0ibm9ybWFsIj5maWxsZXIgY2FwPC90ZXh0PjxyZWN0IHg9IjYiIHk9IjM1MiIgd2lkdGg9IjYyOCIgaGVpZ2h0PSI0MiIgZmlsbD0iI2VlZjJmNiIgc3Ryb2tlPSIjMWMyNzMzIiBzdHJva2Utd2lkdGg9IjIiLz48dGV4dCB4PSIyMCIgeT0iMzc5IiBmaWxsPSIjMWMyNzMzIiBmb250LXNpemU9IjE1IiBmb250LXdlaWdodD0iYm9sZCI+RVhBTVBMRSBTS0VUQ0ggwrcgYWNjZXNzIGNvdmVyIG9wZW5pbmcgZW5sYXJnZWQ8L3RleHQ+PC9zdmc+", "bc144c7ca0c8b75b6bf122733fb7788d": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NDAgNDAwIiBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiPjxyZWN0IHdpZHRoPSI2NDAiIGhlaWdodD0iNDAwIiBmaWxsPSIjZmZmZmZmIi8+PHJlY3QgeD0iNiIgeT0iNiIgd2lkdGg9IjYyOCIgaGVpZ2h0PSIzODgiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzFjMjczMyIgc3Ryb2tlLXdpZHRoPSIyIi8+PHRleHQgeD0iMjQiIHk9IjQwIiBmaWxsPSIjMWMyNzMzIiBmb250LXNpemU9IjIwIiBmb250LXdlaWdodD0iYm9sZCI+U2VhdCByYWlsIHNwYWNlciBjcmFja3M8L3RleHQ+PHJlY3QgeD0iODAiIHk9IjI3MCIgd2lkdGg9IjQ4MCIgaGVpZ2h0PSIzMCIgZmlsbD0iI2Q5ZGVlNCIgc3Ryb2tlPSIjMWMyNzMzIiBzdHJva2Utd2lkdGg9IjIiLz48dGV4dCB4PSI0NTAiIHk9IjMyNSIgZmlsbD0iIzhhOTdhNSIgZm9udC1zaXplPSIxNCIgZm9udC13ZWlnaHQ9Im5vcm1hbCI+Zmxvb3I8L3RleHQ+PHJlY3QgeD0iMTIwIiB5PSIxNjAiIHdpZHRoPSI0MDAiIGhlaWdodD0iMzQiIGZpbGw9IiNmZmZmZmYiIHN0cm9rZT0iIzFjMjczMyIgc3Ryb2tlLXdpZHRoPSI0Ii8+PHRleHQgeD0iMjcwIiB5PSIxNTAiIGZpbGw9IiMxYzI3MzMiIGZvbnQtc2l6ZT0iMTUiIGZvbnQtd2VpZ2h0PSJub3JtYWwiPnNlYXQgcmFpbDwvdGV4dD48cmVjdCB4PSIxNzAiIHk9IjE5NCIgd2lkdGg9IjYwIiBoZWlnaHQ9Ijc2IiBmaWxsPSIjZjNkMmNmIiBzdHJva2U9IiNjMjM1MmQiIHN0cm9rZS13aWR0aD0iMyIvPjxwYXRoIGQ9Ik0xODIgMjAwIEwyMTQgMjYyIiBzdHJva2U9IiNjMjM1MmQiIHN0cm9rZS13aWR0aD0iMyIvPjx0ZXh0IHg9Ijk2IiB5PSIyMzYiIGZpbGw9IiNjMjM1MmQiIGZvbnQtc2l6ZT0iMTUiIGZvbnQtd2VpZ2h0PSJib2xkIj5QQTY8L3RleHQ+PHRleHQgeD0iMTUwIiB5PSIzNDUiIGZpbGw9IiNjMjM1MmQiIGZvbnQtc2l6ZT0iMTQiIGZvbnQtd2VpZ2h0PSJub3JtYWwiPmNyYWNrZWQgYWZ0ZXIgNiBtb250aHM8L3RleHQ+PHJlY3QgeD0iNDEwIiB5PSIxOTQiIHdpZHRoPSI2MCIgaGVpZ2h0PSI3NiIgZmlsbD0iI2Q1ZTZmNyIgc3Ryb2tlPSIjMGI1Y2FiIiBzdHJva2Utd2lkdGg9IjMiIHN0cm9rZS1kYXNoYXJyYXk9IjggNSIvPjx0ZXh0IHg9IjQ4MiIgeT0iMjM2IiBmaWxsPSIjMGI1Y2FiIiBmb250LXNpemU9IjE1IiBmb250LXdlaWdodD0iYm9sZCI+cHJvcG9zYWw6IEFsTWczPC90ZXh0PjxyZWN0IHg9IjYiIHk9IjM1MiIgd2lkdGg9IjYyOCIgaGVpZ2h0PSI0MiIgZmlsbD0iI2VlZjJmNiIgc3Ryb2tlPSIjMWMyNzMzIiBzdHJva2Utd2lkdGg9IjIiLz48dGV4dCB4PSIyMCIgeT0iMzc5IiBmaWxsPSIjMWMyNzMzIiBmb250LXNpemU9IjE1IiBmb250LXdlaWdodD0iYm9sZCI+RVhBTVBMRSBTS0VUQ0ggwrcgc3BhY2VyIG1hdGVyaWFsIHBsYXN0aWMgdG8gYWx1bWluaXVtPC90ZXh0Pjwvc3ZnPg=="};
+const K='cm_demo_data_v1',KB='cm_demo_blobs_v1';const clone=x=>JSON.parse(JSON.stringify(x));
+let store;try{store=JSON.parse(localStorage.getItem(K)||'null')}catch(e){}if(!store)store=clone(SEED);
+try{Object.assign(window.__BLOBS,JSON.parse(localStorage.getItem(KB)||'{}'))}catch(e){}
+const subs=[];function save(){try{localStorage.setItem(K,JSON.stringify(store))}catch(e){}}
+function emit(){const docs=Object.keys(store).sort().map(id=>({id,exists:true,data:()=>clone(store[id]),metadata:{fromCache:false}}));subs.forEach(f=>f({docs,size:docs.length,empty:!docs.length,metadata:{fromCache:false},docChanges:()=>[]}))}
+function merge(a,b){for(const k in b){if(b[k]&&typeof b[k]==='object'&&!Array.isArray(b[k]))a[k]=merge(a[k]&&typeof a[k]==='object'&&!Array.isArray(a[k])?a[k]:{},b[k]);else a[k]=b[k]}return a}
+const ref=id=>({id,set:async d=>{store[id]=clone(d);save();emit()},update:async d=>{if(!store[id])throw{code:'invalid_argument'};merge(store[id],clone(d));save();emit()},delete:async()=>{delete store[id];save();emit()}});
+const db={doc:p=>ref(p.split('/')[1]),collection:()=>({doc:id=>ref(id||('c'+Date.now().toString(36)+Math.random().toString(36).slice(2,6))),onSnapshot:f=>{subs.push(f);setTimeout(emit,0);return()=>{}}})};
+const assets={upload:b=>new Promise((res,rej)=>{const r=new FileReader();r.onerror=rej;r.onload=()=>{const id=Array.from(crypto.getRandomValues(new Uint8Array(16)),x=>x.toString(16).padStart(2,'0')).join('');window.__BLOBS[id]=r.result;try{const m=JSON.parse(localStorage.getItem(KB)||'{}');m[id]=r.result;localStorage.setItem(KB,JSON.stringify(m));res({id})}catch(e){delete window.__BLOBS[id];rej(e)}};r.readAsDataURL(b)})};
+window.claude={use:async n=>n==='db'?db:n==='assets'?assets:null};
+window.addEventListener('DOMContentLoaded',()=>{const f=document.createElement('div');f.className='wrap';f.style.cssText='padding-block:0 28px;gap:8px';
+ f.innerHTML='<p class="small muted" style="border-top:1px solid var(--line);padding-top:12px">Demo version. Data is stored only in this browser and is not shared with other people.</p><div class="row"><button id="dm_reset">Reset to examples</button><button id="dm_exp">Export data</button><label class="btn" style="flex-direction:row;color:var(--ink);cursor:pointer">Import data<input id="dm_imp" type="file" accept="application/json" hidden></label><span id="dm_msg" class="small muted"></span></div>';
+ document.body.appendChild(f);const msg=t=>document.getElementById('dm_msg').textContent=t;
+ document.getElementById('dm_reset').onclick=()=>{store=clone(SEED);save();emit();msg('Examples restored.')};
+ document.getElementById('dm_exp').onclick=()=>{const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([JSON.stringify(store,null,1)],{type:'application/json'}));a.download='change-management-data.json';a.click();msg('Exported.')};
+ document.getElementById('dm_imp').onchange=e=>{const r=new FileReader();r.onload=()=>{try{const d=JSON.parse(r.result);if(!d||typeof d!=='object'||Array.isArray(d))throw 0;store=d;save();emit();msg('Imported.')}catch(x){msg('This file is not a valid export.')}};if(e.target.files[0])r.readAsText(e.target.files[0])};
+});
+})();
+</script>
+<meta name="claude:viewport-fit-sides" content="cover">
+<title>Change Management</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<style>
+/* Layout: working tool. Name and three views on top, one column below; every change opens with its sketch, problem and proposal, then the stage line. */
+:root{
+  --bg:#f2f4f7; --surface:#ffffff; --sunk:#e9edf2; --ink:#15202b; --muted:#566473; --line:#d3dae2;
+  --accent:#0b5cab; --on-accent:#ffffff; --accent-soft:#dfecf9;
+  --ok:#1b7446; --ok-soft:#dcf1e5; --warn:#8f5606; --warn-soft:#fbecd0; --bad:#ae2f29; --bad-soft:#f9dfdc; --on-sem:#ffffff;
+  --sans:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){
+  --bg:#10151b; --surface:#19212a; --sunk:#141b22; --ink:#e5eaf0; --muted:#97a5b3; --line:#2c3743;
+  --accent:#6fb1f6; --on-accent:#0b1620; --accent-soft:#1b3350;
+  --ok:#62c594; --ok-soft:#173326; --warn:#e2aa52; --warn-soft:#3a2b10; --bad:#f17d75; --bad-soft:#40201e; --on-sem:#0b1620;
+  color-scheme:dark } }
+:root[data-theme="dark"]{
+  --bg:#10151b; --surface:#19212a; --sunk:#141b22; --ink:#e5eaf0; --muted:#97a5b3; --line:#2c3743;
+  --accent:#6fb1f6; --on-accent:#0b1620; --accent-soft:#1b3350;
+  --ok:#62c594; --ok-soft:#173326; --warn:#e2aa52; --warn-soft:#3a2b10; --bad:#f17d75; --bad-soft:#40201e; --on-sem:#0b1620;
+  color-scheme:dark }
+
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font:15px/1.5 var(--sans)}
+.wrap{max-width:1000px;margin:0 auto;padding-block:20px 48px;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));
+  display:flex;flex-direction:column;gap:18px}
+h1{font-size:20px;font-weight:600;margin:0;letter-spacing:-.01em}
+h2{font-size:18px;font-weight:600;margin:0;text-wrap:balance;overflow-wrap:anywhere}
+h3{font-size:12px;font-weight:600;margin:0;text-transform:uppercase;letter-spacing:.07em;color:var(--muted)}
+p{margin:0}
+.mono{font-family:var(--mono);font-variant-numeric:tabular-nums}
+.muted{color:var(--muted)} .small{font-size:13px}
+
+.top{display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between}
+.tabs{display:flex;gap:4px;background:var(--sunk);padding:4px;border-radius:10px;flex-wrap:wrap}
+.tabs a{padding:7px 13px;border-radius:7px;color:var(--muted);text-decoration:none;font-weight:500;font-size:14px}
+.tabs .dtab{border:0;background:none;color:var(--muted);padding:7px 16px;border-radius:7px}
+.tabs .dtab[aria-selected="true"]{background:var(--surface);color:var(--ink);box-shadow:0 0 0 1px var(--line)}
+.tabs a[aria-current="page"]{background:var(--surface);color:var(--ink);box-shadow:0 0 0 1px var(--line)}
+
+button,.btn{font:inherit;font-weight:500;font-size:14px;border:1px solid var(--line);background:var(--surface);color:var(--ink);padding:8px 13px;border-radius:8px;cursor:pointer}
+button:hover:not(:disabled){border-color:var(--muted)}
+button:disabled{opacity:.45;cursor:not-allowed}
+button.primary{background:var(--accent);color:var(--on-accent);border-color:var(--accent)}
+button.danger{color:var(--bad)}
+button.link{border:0;background:none;padding:0;color:var(--accent);font-size:inherit}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+input,textarea,select{font:inherit;color:var(--ink);background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:8px 10px;width:100%;min-width:0}
+textarea{min-height:76px;resize:vertical}
+label{display:flex;flex-direction:column;gap:5px;font-size:13px;font-weight:500;color:var(--muted);min-width:0}
+label input,label textarea,label select{font-weight:400}
+.grid{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(200px,1fr))}
+.grid.tight{grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:8px}
+.row{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.stack{display:flex;flex-direction:column;gap:14px}
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:16px;display:flex;flex-direction:column;gap:14px;min-width:0}
+
+.pill{display:inline-block;font-size:12px;font-weight:600;padding:2px 9px;border-radius:99px;white-space:nowrap;background:var(--sunk);color:var(--muted)}
+.pill.cm{background:var(--warn-soft);color:var(--warn)}
+.pill.run{background:var(--accent-soft);color:var(--accent)}
+.pill.ok{background:var(--ok-soft);color:var(--ok)}
+.pill.bad{background:var(--bad-soft);color:var(--bad)}
+.tag{font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;border:1px dashed var(--muted);color:var(--muted);padding:1px 6px;border-radius:4px;white-space:nowrap}
+
+.bars{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:4px;align-items:end;border-bottom:2px solid var(--line)}
+.bar{display:flex;flex-direction:column;align-items:center;justify-content:flex-end;gap:3px;padding:6px 1px 0;border:0;border-radius:8px 8px 0 0;background:none;min-width:0;position:relative}
+.bar .n{font-family:var(--mono);font-size:15px;font-weight:500}
+.bar .col{width:70%;max-width:46px;min-height:3px;border-radius:5px 5px 0 0;background:var(--accent)}
+.bar.cm .col{background:var(--warn)} .bar .col.zero{background:var(--line)}
+.bar .l{font-size:10.5px;color:var(--muted);line-height:1.2;height:28px;display:flex;align-items:center;text-align:center;order:3}
+.bar[aria-pressed="true"]{background:var(--sunk);box-shadow:inset 0 0 0 1px var(--muted)}
+.bar[aria-pressed="true"] .l{color:var(--ink);font-weight:600}
+.key{display:inline-block;width:10px;height:10px;border-radius:2px;background:var(--accent);margin:0 5px 0 0;vertical-align:-1px}
+.key.cm{background:var(--warn)} .key + .key,.small .key:nth-of-type(2){margin-left:10px}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{font-size:13px;padding:5px 11px;border-radius:99px}
+.chip[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.chip .n{font-family:var(--mono);opacity:.7;margin-left:4px}
+
+.list{display:flex;flex-direction:column;border:1px solid var(--line);border-radius:12px;background:var(--surface);overflow:hidden}
+.item{display:grid;grid-template-columns:92px minmax(0,1fr) auto;gap:4px 14px;padding:12px 14px;border:0;border-radius:0;border-top:1px solid var(--line);text-align:left;width:100%;align-items:center}
+.item:first-child{border-top:0}
+.item:hover:not(:disabled){background:var(--sunk)}
+.item .th{grid-row:1/4;width:92px;height:62px}
+.item .t{font-weight:600;overflow-wrap:anywhere}
+.item .sub{grid-column:2/4;font-size:13px;color:var(--muted);overflow-wrap:anywhere}
+.item .meta{grid-column:2/4;font-size:13px;color:var(--muted);display:flex;flex-wrap:wrap;gap:4px 14px;align-items:center}
+@media (max-width:560px){ .item{grid-template-columns:64px minmax(0,1fr)} .item .th{width:64px;height:48px;grid-row:1/3} .item .pill{grid-column:2;justify-self:start} .item .sub,.item .meta{grid-column:1/3} }
+.th,.hero{object-fit:cover;border:1px solid var(--line);border-radius:6px;background:#fff}
+.noimg{display:flex;align-items:center;justify-content:center;font-size:11px;color:var(--muted);background:var(--sunk);border:1px dashed var(--line);border-radius:6px}
+
+.empty{border:1px dashed var(--line);border-radius:12px;padding:28px 18px;text-align:center;color:var(--muted);display:flex;flex-direction:column;gap:10px;align-items:center}
+.note{background:var(--accent-soft);color:var(--ink);border-radius:8px;padding:10px 12px;font-size:14px;display:flex;flex-wrap:wrap;gap:8px 12px;align-items:center;justify-content:space-between}
+.note.warn{background:var(--warn-soft)} .note.bad{background:var(--bad-soft)} .note.ok{background:var(--ok-soft)}
+.note > span{flex:1 1 260px;min-width:0}
+
+/* what are we talking about */
+.lead{display:grid;grid-template-columns:minmax(0,300px) minmax(0,1fr);gap:16px;align-items:start}
+.lead .hero{width:100%;aspect-ratio:16/10;max-width:100%}
+.lead .noimg{width:100%;aspect-ratio:16/10}
+.lead .txt{display:flex;flex-direction:column;gap:10px;min-width:0}
+.lead .pp{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px}
+.lead .pp p{overflow-wrap:anywhere}
+@media (max-width:640px){ .lead{grid-template-columns:minmax(0,1fr)} }
+.facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:8px 14px;font-size:14px;border-top:1px solid var(--line);padding-top:12px}
+.facts span{display:block;font-size:10.5px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted)}
+.facts div{min-width:0;overflow-wrap:anywhere}
+
+/* stage line */
+.trackwrap{overflow-x:auto}
+.track{list-style:none;margin:0;padding:6px 0 2px;display:flex;min-width:660px}
+.track li{flex:1;position:relative;display:flex;flex-direction:column;align-items:center;gap:3px;text-align:center;font-size:12px;padding:0 4px;color:var(--muted)}
+.track li::before{content:"";position:absolute;top:9px;left:-50%;width:100%;height:4px;background:var(--line)}
+.track li:first-child::before{display:none}
+.track .dot{width:22px;height:22px;border-radius:50%;background:var(--surface);border:3px solid var(--line);position:relative;z-index:1;margin-bottom:3px}
+.track .done::before,.track .now::before{background:var(--ok)}
+.track .done .dot{background:var(--ok);border-color:var(--ok)}
+.track .now .dot{background:var(--accent);border-color:var(--accent);box-shadow:0 0 0 5px var(--accent-soft)}
+.track .now{color:var(--ink)} .track .now b{font-weight:600}
+.track .rej::before{background:var(--bad)} .track .rej .dot{background:var(--bad);border-color:var(--bad)} .track .rej{color:var(--bad)}
+.track b{font-weight:500} .track .who{font-size:11px}
+.mini{display:inline-flex;gap:3px;align-items:center}
+.mini i{width:15px;height:5px;border-radius:3px;background:var(--line)}
+.mini .done{background:var(--ok)} .mini .now{background:var(--accent);height:9px} .mini .rej{background:var(--bad);height:9px}
+
+/* department inputs */
+.pick{display:flex;flex-wrap:wrap;gap:6px}
+.pick label{flex-direction:row;align-items:center;gap:7px;font-size:14px;color:var(--ink);font-weight:400;padding:5px 9px;border:1px solid var(--line);border-radius:8px}
+.pick input{width:auto}
+.dept{display:flex;flex-direction:column;gap:10px;padding-top:14px;border-top:1px solid var(--line)}
+.dept .dh{display:flex;flex-wrap:wrap;gap:6px 10px;align-items:center;background:var(--sunk);border-left:6px solid var(--line);border-radius:6px;padding:9px 12px}
+.dept .dh b{font-size:19px;font-weight:600;letter-spacing:-.01em}
+.dept .dh.s-ok{border-left-color:var(--ok);background:var(--ok-soft)}
+.dept .dh.s-cond{border-left-color:var(--warn);background:var(--warn-soft)}
+.dept .dh.s-no{border-left-color:var(--bad);background:var(--bad-soft)}
+.dept .dh.s-open{border-left-color:var(--accent);background:var(--accent-soft)}
+.dept .dh .pill{background:var(--surface)}
+/* vertical stage line beside the steps */
+.rail{display:flex;flex-direction:column;gap:14px;padding-left:28px}
+.rs{position:relative}
+.rs::after{content:"";position:absolute;left:-19px;top:0;bottom:-15px;width:4px;background:var(--line)}
+.rs:last-child::after{bottom:0}
+.rs::before{content:"";position:absolute;left:-28px;top:14px;width:16px;height:16px;border-radius:50%;background:var(--surface);border:3px solid var(--line);z-index:1}
+.rs.done::after{background:var(--ok)} .rs.done::before{background:var(--ok);border-color:var(--ok)}
+.rs.now::before{background:var(--accent);border-color:var(--accent);box-shadow:0 0 0 4px var(--accent-soft)}
+.rs.now{border-color:var(--accent)}
+.rs.rej::before{background:var(--bad);border-color:var(--bad)} .rs.rej::after{background:var(--bad)}
+.feas{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.feas.need{outline:2px dashed var(--warn);outline-offset:5px;border-radius:6px}
+.feas.need .fl{color:var(--warn)}
+.feas .fl{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.07em;color:var(--muted);min-width:86px}
+.fb{padding:9px 14px;font-weight:600;border-width:2px}
+.fb[aria-pressed="true"].ok{background:var(--ok);border-color:var(--ok);color:var(--on-sem)}
+.fb[aria-pressed="true"].cond{background:var(--warn);border-color:var(--warn);color:var(--on-sem)}
+.fb[aria-pressed="true"].no{background:var(--bad);border-color:var(--bad);color:var(--on-sem)}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px}
+.kpis div{background:var(--sunk);border-radius:8px;padding:9px 11px;min-width:0}
+.kpis span{display:block;font-size:11px;text-transform:uppercase;letter-spacing:.07em;color:var(--muted)}
+.kpis b{font-family:var(--mono);font-weight:500;font-size:16px}
+.thread{display:flex;flex-direction:column;gap:12px;min-width:0}
+.scrollbox{max-height:340px;overflow-y:auto;overscroll-behavior:contain;border:1px solid var(--line);border-radius:8px;padding:12px;background:var(--sunk)}
+.entry{border-left:3px solid var(--line);padding-left:10px;display:flex;flex-direction:column;gap:4px;min-width:0}
+.entry.k-min{border-left-color:var(--accent)}
+.entry p{overflow-wrap:anywhere}
+.replies{margin:4px 0 0 12px;padding-left:10px;border-left:2px dashed var(--line);display:flex;flex-direction:column;gap:8px}
+.addnote{display:flex;flex-wrap:wrap;gap:6px}
+.addnote input{flex:1 1 200px}
+.addnote input.me{flex:0 1 130px}
+.item .sub.last{color:var(--ink)}
+.log{display:flex;flex-direction:column;gap:10px}
+.log > div{border-left:3px solid var(--line);padding-left:10px}
+.hist{font-size:13px;display:flex;flex-direction:column;gap:3px;color:var(--muted)}
+.weeknav{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.weeknav .w{font-family:var(--mono);font-weight:500;font-size:16px;min-width:15ch}
+details summary{cursor:pointer;font-weight:500}
+details[open] summary{margin-bottom:12px}
+#toast{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(18px + env(safe-area-inset-bottom,0px));background:var(--ink);color:var(--bg);padding:8px 14px;border-radius:8px;font-size:14px;z-index:20;max-width:90vw}
+#toast.bad{background:var(--bad);color:var(--on-sem)}
+</style>
+
+<div class="wrap">
+  <div class="top">
+    <h1>Change Management</h1>
+    <nav class="tabs" aria-label="Views">
+      <a href="#overview" data-tab="overview">Overview</a>
+      <a href="#meeting" data-tab="meeting">Weekly meeting</a>
+      <a href="#new" data-tab="new">New request</a>
+    </nav>
+  </div>
+  <main id="app"></main>
+</div>
+<div id="toast" hidden role="status"></div>
+
+<script>
+const STAGES=[['new','Request','Change manager'],['precheck','Design pre-check','Design'],['release1','Release 1','Change manager'],['technical','Technical assessment','Departments'],['commercial','Commercial assessment','Departments'],['approval','Final approval','Change manager'],['docs','Documentation release','Design']];
+const SNAME=Object.assign(Object.fromEntries(STAGES.map(s=>[s[0],s[1]])),{released:'Released',rejected:'Rejected'});
+const SIDX=Object.fromEntries(STAGES.map((s,i)=>[s[0],i]));
+const TECH=[['production','Production'],['quality','Quality'],['testing','Testing'],['electronics','Electronics'],['homologation','Homologation'],['technology','Process engineering']];
+const COMM=[['purchasing','Purchasing'],['logistics','Logistics'],['aftersales','Aftersales']];
+const DNAME=Object.fromEntries([['design','Design'],...TECH,...COMM]);
+const FV={ok:'Feasible',cond:'With conditions',no:'Not feasible'};
+const TYPES=['Production issue','Quality','Cost saving','Safety / legal'];
+const app=document.getElementById('app');
+const S={items:[],loaded:false,err:null,slow:false,view:'overview',detail:null,filter:'open',q:'',week:null,draft:{},min:{},del:false,busy:false,dtab:'process',note:{},reply:null,rdraft:'',me:''};
+let db=null,assets=null,pending=false;
+
+const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const iso=d=>d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');
+const today=()=>iso(new Date());
+const plusDays=n=>{const d=new Date();d.setDate(d.getDate()+n);return iso(d)};
+const MON=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+const fd=s=>{if(!s)return '—';const [y,m,d]=s.split('-').map(Number);return d+' '+MON[m-1]+' '+y};
+const money=n=>(n<0?'−':'')+'€ '+Math.abs(n).toLocaleString('en-GB',{maximumFractionDigits:2});
+const num=v=>Number(String(v??'').replace(/[^\d.-]/g,''))||0;
+function wk(d){const t=new Date(Date.UTC(d.getFullYear(),d.getMonth(),d.getDate()));const dn=t.getUTCDay()||7;t.setUTCDate(t.getUTCDate()+4-dn);const y=t.getUTCFullYear();return y+'-W'+String(Math.ceil(((t-Date.UTC(y,0,1))/864e5+1)/7)).padStart(2,'0')}
+function wkStart(k){const [y,w]=k.split('-W').map(Number);const s=new Date(Date.UTC(y,0,4));const dn=s.getUTCDay()||7;s.setUTCDate(s.getUTCDate()-dn+1+(w-1)*7);return s}
+function wkAdd(k,n){const s=wkStart(k);s.setUTCDate(s.getUTCDate()+n*7);return wk(new Date(s.getUTCFullYear(),s.getUTCMonth(),s.getUTCDate()))}
+const cw=k=>k?'CW '+Number(k.split('-W')[1]):'not planned';
+function wkLabel(k){if(!k)return 'Not planned';const s=wkStart(k),e=new Date(s);e.setUTCDate(e.getUTCDate()+6);return cw(k)+' · '+s.getUTCDate()+' '+MON[s.getUTCMonth()]+' – '+e.getUTCDate()+' '+MON[e.getUTCMonth()]}
+const NOW=wk(new Date());S.week=NOW;
+const blobOk=id=>/^[0-9a-f]{32}$/.test(id||'');
+const get=id=>S.items.find(x=>x.id===id);
+
+/* ---------- process logic ---------- */
+const open=c=>c.stav!=='released'&&c.stav!=='rejected';
+const inp=(c,k)=>(c.inputs&&c.inputs[k])||{};
+const on=(c,list)=>list.filter(([k])=>inp(c,k).on);
+const done=x=>x.f==='ok'||x.f==='cond';
+const designOk=c=>done(inp(c,'design'))&&inp(c,'design').dmu==='ok';
+const waveDone=(c,list)=>on(c,list).every(([k])=>done(inp(c,k))&&!inp(c,k).reconfirm);
+const waveCount=(c,list)=>{const a=on(c,list);return {n:a.length,ok:a.filter(([k])=>done(inp(c,k))&&!inp(c,k).reconfirm).length}};
+function blockers(c){const b=[];if(inp(c,'design').f==='no')b.push('Design');if(inp(c,'design').dmu==='no')b.push('DMU check');[...TECH,...COMM].forEach(([k,l])=>{if(inp(c,k).on&&inp(c,k).f==='no')b.push(l)});return b}
+function advance(c){let s=c.stav;for(let i=0;i<5;i++){let n=s;
+  if(s==='precheck'&&designOk(c))n='release1';
+  else if(s==='release1'&&!designOk(c))n='precheck';
+  else if(s==='technical'&&waveDone(c,TECH))n=on(c,COMM).length?'commercial':'approval';
+  else if(s==='commercial'){if(!waveDone(c,TECH))n='technical';else if(waveDone(c,COMM))n='approval'}
+  else if(s==='approval'){if(!waveDone(c,TECH))n='technical';else if(!waveDone(c,COMM))n='commercial'}
+  if(n===s)break;s=n}return s}
+function waveActive(c,k){if(!open(c))return false;const i=SIDX[c.stav];if(k==='design')return i===1||i===2;if(TECH.some(d=>d[0]===k))return i>=3&&i<=5;return i>=4&&i<=5}
+const overdue=(c,k)=>{const x=inp(c,k);return waveActive(c,k)&&x.due&&x.due<today()&&!(done(x)&&!x.reconfirm)&&(k!=='design'||!designOk(c))};
+function waiting(c){const s=c.stav;if(s==='technical'||s==='commercial')return on(c,s==='technical'?TECH:COMM).filter(([k])=>!(done(inp(c,k))&&!inp(c,k).reconfirm));return []}
+function totals(c){let one=num(inp(c,'design').oneoff),piece=num(inp(c,'design').piece),lead=num(inp(c,'design').lead);[...TECH,...COMM].forEach(([k])=>{const x=inp(c,k);if(x.on){one+=num(x.oneoff);piece+=num(x.piece);lead=Math.max(lead,num(x.lead))}});
+  const bc=c.bc||{},vol=num(bc.volume),ben=num(bc.benefit),net=ben-piece*vol;return {one,piece,lead,vol,ben,net,payback:one>0&&net>0?one/net:null}}
+const rev=c=>String.fromCharCode(65+(c.rev||0));
+
+function toast(msg,bad,ms){const t=document.getElementById('toast');t.textContent=msg;t.className=bad?'bad':'';t.hidden=false;clearTimeout(toast.t);toast.t=setTimeout(()=>t.hidden=true,ms||(bad?5000:1600))}
+function errMsg(e){const c=e&&e.code;if(c==='quota_exceeded')return 'Storage is full. Delete old records.';if(c==='invalid_argument')return 'Could not save. You probably need Contributor access to write.';return 'Could not save, please try again.'}
+const queue={};
+function write(id,patch){queue[id]=(queue[id]||Promise.resolve()).then(()=>db.doc('changes/'+id).update(patch)).then(()=>toast('Saved'),e=>toast(errMsg(e),true));return queue[id]}
+function nest(path,v){const o={};let p=o;const ks=path.split('.');ks.forEach((k,i)=>{p[k]=i===ks.length-1?v:{};p=p[k]});return o}
+function setIn(p,patch,key,obj){p.inputs=p.inputs||{};p.inputs[key]=Object.assign({},p.inputs[key],obj);patch.inputs=patch.inputs||{};patch.inputs[key]=Object.assign({},patch.inputs[key],obj)}
+function openWave(p,patch,s){const due=plusDays(7);const give=k=>{if(!inp(p,k).due)setIn(p,patch,k,{due})};
+  if(s==='precheck')give('design');if(s==='technical')on(p,TECH).forEach(([k])=>give(k));if(s==='commercial')on(p,COMM).forEach(([k])=>give(k))}
+/* every process change goes through here: apply, auto-advance the stage, log it */
+function mutate(id,fn,text){const c=get(id);if(!c||!db)return Promise.resolve();const p=JSON.parse(JSON.stringify(c));delete p.id;const patch={};fn(p,patch);
+  const s=advance(p);if(s!==c.stav){p.stav=s;patch.stav=s;openWave(p,patch,s)}
+  const log=[...(c.log||[])];if(text)log.push({d:today(),t:text});if(s!==c.stav)log.push({d:today(),t:'Stage: '+SNAME[s]});patch.log=log.slice(-60);
+  return write(id,patch).then(()=>({moved:s!==c.stav,stav:s}))}
+function missing(c){if(c.stav==='precheck'){const d=inp(c,'design');return [!done(d)&&'Design feasibility',d.dmu!=='ok'&&'DMU check'].filter(Boolean)}return waiting(c).map(d=>d[1])}
+function prog(c){if(c.stav==='precheck')return (2-missing(c).length)+'/2';if(c.stav==='technical'){const w=waveCount(c,TECH);return w.ok+'/'+w.n}if(c.stav==='commercial'){const w=waveCount(c,COMM);return w.ok+'/'+w.n}return ''}
+function announce(id,r){const c=get(id);if(!c||!r)return;if(r.moved){toast('Moved to: '+SNAME[c.stav],false,3500);const t=app.querySelector('.track');if(t)t.scrollIntoView({block:'center',behavior:'smooth'})}
+  else{const m=open(c)?missing(c):[];if(m.length)toast('Saved. Still needed before the next stage: '+m.join(', '),false,4500)}}
+
+/* ---------- pieces ---------- */
+function stagePill(c){const s=c.stav,cl=s==='released'?'ok':s==='rejected'?'bad':(s==='new'||s==='release1'||s==='approval')?'cm':'run';return '<span class="pill '+cl+'">'+esc(SNAME[s]||s)+'</span>'}
+const ex=c=>c.example?' <span class="tag">example</span>':'';
+function img(c,cl){return blobOk(c.photo)?'<img class="'+cl+'" src="'+((window.__BLOBS&&window.__BLOBS[c.photo])||'/_blob/'+c.photo)+'" alt="Sketch: '+esc(c.title)+'" loading="lazy">':'<div class="noimg '+cl+'">No image</div>'}
+function stageClass(c,i){if(c.stav==='released')return 'done';if(c.stav==='rejected'){const r=SIDX[c.rejAt]??0;return i<r?'done':i===r?'rej':''}const cur=SIDX[c.stav];return i<cur?'done':i===cur?'now':''}
+function track(c){return '<div class="trackwrap"><ol class="track" aria-label="Where this change is">'+STAGES.map((s,i)=>{const cl=stageClass(c,i);return '<li class="'+cl+'"'+(cl==='now'?' aria-current="step"':'')+'><span class="dot"></span><b>'+(cl==='rej'?'Rejected here':s[1])+'</b><span class="who">'+s[2]+(cl==='now'&&prog(c)?' · '+prog(c):'')+'</span></li>'}).join('')+'</ol></div>'}
+function mini(c){return '<span class="mini" title="'+esc(SNAME[c.stav])+'">'+STAGES.map((s,i)=>'<i class="'+stageClass(c,i)+'"></i>').join('')+'</span>'}
+function waitText(c){const s=c.stav;if(s==='new'||s==='release1'||s==='approval')return 'Waiting for: Change manager';if(s==='precheck'||s==='docs')return 'Waiting for: Design';const w=waiting(c);return w.length?'Waiting for: '+w.map(d=>d[1]).join(', '):''}
+function meetNote(c){if(!c.week)return '<span>No meeting planned</span>';if(c.week<NOW)return '<span class="pill bad">Meeting '+esc(cw(c.week))+' missed, discuss now</span>';return '<span class="pill">Next meeting: '+esc(cw(c.week))+(c.week===NOW?' (this week)':'')+'</span>'}
+/* ---------- notes thread ---------- */
+const ALLD=[['design','Design'],...TECH,...COMM];
+const nowTs=()=>{const d=new Date();return today()+'T'+String(d.getHours()).padStart(2,'0')+':'+String(d.getMinutes()).padStart(2,'0')+':'+String(d.getSeconds()).padStart(2,'0')};
+const fts=t=>fd((t||'').slice(0,10))+((t||'').length>10&&t.slice(11,16)!=='00:00'?', '+t.slice(11,16):'');
+function entries(c){const out=[];
+  (c.minutes||[]).forEach((z,i)=>out.push({id:'min-'+i,ts:(z.ts||z.date+'T00:00'),kind:'minutes',who:z.who,text:z.text,next:z.next,week:z.week}));
+  ALLD.forEach(([k])=>{const x=inp(c,k);if(x.note)out.push({id:'legacy-'+k,ts:(x.at||c.date)+'T00:00',kind:'note',dept:k,who:x.who,text:x.note})});
+  (c.notes||[]).filter(n=>!n.re).forEach(n=>out.push(Object.assign({kind:'note'},n)));
+  return out.sort((a,b)=>a.ts<b.ts?1:a.ts>b.ts?-1:0)}
+const replies=(c,id)=>(c.notes||[]).filter(n=>n.re===id).sort((a,b)=>a.ts<b.ts?-1:1);
+const srcLabel=e=>e.kind==='minutes'?'Meeting '+cw(e.week):(DNAME[e.dept]||'General');
+function entryHtml(c,e){const id=esc(c.id),rs=replies(c,e.id),openR=S.reply===c.id+'|'+e.id;
+  return '<div class="entry '+(e.kind==='minutes'?'k-min':'k-note')+'" data-entry="'+esc(e.id)+'"><p class="small muted"><span class="pill">'+esc(srcLabel(e))+'</span> <span class="mono">'+esc(fts(e.ts))+'</span>'+(e.who?' · '+esc(e.who):'')+'</p><p>'+esc(e.text)+'</p>'+(e.next?'<p class="small"><b>Next step:</b> '+esc(e.next)+'</p>':'')+
+    (rs.length?'<div class="replies">'+rs.map(r=>'<div><p class="small muted"><span class="mono">'+esc(fts(r.ts))+'</span>'+(r.who?' · '+esc(r.who):'')+'</p><p>'+esc(r.text)+'</p></div>').join('')+'</div>':'')+
+    (openR?'<div class="addnote"><input data-r placeholder="Write a reply" value="'+esc(S.rdraft||'')+'" aria-label="Reply"><input class="me" data-me placeholder="Your name" value="'+esc(S.me||'')+'" aria-label="Your name"><button class="primary" data-act="sendreply" data-id="'+id+'" data-re="'+esc(e.id)+'">Send</button><button data-act="cancelreply">Cancel</button></div>'
+      :'<div><button class="link small" data-act="reply" data-id="'+id+'" data-re="'+esc(e.id)+'">Reply'+(rs.length?' ('+rs.length+')':'')+'</button></div>')+'</div>'}
+function addNoteForm(c,k,ph){const key=c.id+':'+k;return '<div class="addnote"><input data-nk="'+k+'" data-id="'+esc(c.id)+'" placeholder="'+ph+'" value="'+esc(S.note[key]||'')+'" aria-label="'+ph+'"><input class="me" data-me placeholder="Your name" value="'+esc(S.me||'')+'" aria-label="Your name"><button data-act="addnote" data-id="'+esc(c.id)+'" data-k="'+k+'">Add note</button></div>'}
+function latest(c){const e=entries(c)[0];if(!e)return null;const rs=replies(c,e.id),r=rs[rs.length-1];return {src:srcLabel(e),ts:(r||e).ts,who:(r||e).who,text:(r||e).text,next:r?'':e.next}}
+function latestLine(c,cl){const l=latest(c);return l?'<p class="small '+(cl||'')+'"><b>Latest · '+esc(l.src)+', '+esc(fts(l.ts))+(l.who?', '+esc(l.who):'')+':</b> '+esc(l.text)+(l.next?' <b>Next step:</b> '+esc(l.next):'')+'</p>':''}
+
+function row(c){return '<button class="item" data-act="open" data-id="'+esc(c.id)+'">'+img(c,'th')+'<span class="t"><span class="mono small muted">'+esc(c.no)+' · rev '+rev(c)+'</span><br>'+esc(c.title)+ex(c)+'</span>'+stagePill(c)+
+  '<span class="sub">'+esc(c.proposal||c.problem||'')+'</span>'+(latest(c)?'<span class="sub last"><b>Latest · '+esc(latest(c).src)+', '+esc(fts(latest(c).ts))+':</b> '+esc(latest(c).text.slice(0,140))+'</span>':'')+'<span class="meta">'+mini(c)+'<span>'+esc(DNAME[c.dept]||c.dept||'—')+'</span>'+(open(c)?'<span>'+esc(waitText(c))+'</span>'+meetNote(c):'')+'</span></button>'}
+function lead(c,withTitle){return '<div class="lead">'+img(c,'hero')+'<div class="txt"><div class="row"><span class="mono small">'+esc(c.no)+' · rev '+rev(c)+'</span>'+stagePill(c)+'<span class="pill">'+esc(c.type||'—')+'</span>'+(c.urgency&&c.urgency!=='Normal'?'<span class="pill bad">'+esc(c.urgency)+'</span>':'')+ex(c)+'</div>'+
+  (withTitle?'<h2>'+esc(c.title)+'</h2>':'')+'<div class="pp"><div><h3>Problem / root cause</h3><p>'+esc(c.problem||'—')+'</p></div><div><h3>Proposed change</h3><p>'+esc(c.proposal||'Not known yet')+'</p></div></div></div></div>'}
+
+/* ---------- views ---------- */
+function vOverview(){
+  const all=S.items,f=S.filter,q=S.q.trim().toLowerCase();
+  const match=(c,k)=>k==='open'?open(c):k==='all'?true:c.stav===k;
+  const SHORT={new:'Request',precheck:'Pre-check',release1:'Release 1',technical:'Tech.',commercial:'Comm.',approval:'Approval',docs:'Docs'};
+  const cnt=STAGES.map(s=>all.filter(c=>c.stav===s[0]).length),mx=Math.max(1,...cnt);
+  const bars='<div class="panel"><h3>Open changes by stage</h3><div class="bars">'+STAGES.map((s,i)=>'<button class="bar'+(s[2]==='Change manager'?' cm':'')+'" data-act="filter" data-k="'+(f===s[0]?'open':s[0])+'" aria-pressed="'+(f===s[0])+'" aria-label="'+s[1]+': '+cnt[i]+'"><span class="n">'+cnt[i]+'</span><span class="col'+(cnt[i]?'':' zero')+'" style="height:'+Math.round(cnt[i]/mx*72)+'px"></span><span class="l">'+SHORT[s[0]]+'</span></button>').join('')+'</div><p class="small muted"><span class="key cm"></span>waiting for the change manager <span class="key"></span>waiting for Design or departments · tap a bar to filter</p></div>';
+  const chips=[['open','Open'],['released','Released'],['rejected','Rejected'],['all','All']].map(([k,l])=>'<button class="chip" data-act="filter" data-k="'+k+'" aria-pressed="'+(f===k)+'">'+l+'<span class="n">'+all.filter(c=>match(c,k)).length+'</span></button>').join('');
+  let list=all.filter(c=>match(c,f));
+  if(q)list=list.filter(c=>[c.no,c.title,c.requester,c.part,c.vehicle,c.problem,c.proposal].join(' ').toLowerCase().includes(q));
+  const body=!all.length?'<div class="empty"><p>No change requests yet.</p><p class="small">Every change starts with a One Page request. Once saved it shows up here and waits for the change manager.</p><a class="btn" href="#new" style="text-decoration:none">Create the first request</a></div>'
+    :list.length?'<div class="list">'+list.map(row).join('')+'</div>':'<div class="empty"><p>Nothing matches this filter.</p></div>';
+  return '<div class="stack">'+(all.length?bars:'')+'<div class="chips">'+chips+'</div><input id="search" type="search" placeholder="Search number, title, part, requester" value="'+esc(S.q)+'" data-search aria-label="Search">'+body+'</div>';
+}
+
+function vNew(){
+  const d=S.draft,v=k=>esc(d[k]||''),sel=(k,arr)=>arr.map(x=>'<option'+(d[k]===x?' selected':'')+'>'+x+'</option>').join('');
+  const opt=Object.entries(DNAME).map(([k,l])=>'<option value="'+k+'"'+(d.dept===k?' selected':'')+'>'+l+'</option>').join('');
+  return '<form id="fnew" class="panel" novalidate><div><h2>Change request (One Page)</h2><p class="muted small">Filled in by the department that needs the change. Title, department and problem are required.</p></div>'+
+  '<div class="grid"><label>Title<input id="n_title" data-d="title" value="'+v('title')+'" placeholder="e.g. Bracket modification to remove collision"></label>'+
+  '<label>Requesting department<select id="n_dept" data-d="dept"><option value="">Select</option>'+opt+'</select></label>'+
+  '<label>Requester<input id="n_req" data-d="requester" value="'+v('requester')+'"></label></div>'+
+  '<div class="grid"><label>Change type<select id="n_type" data-d="type">'+sel('type',TYPES)+'</select></label>'+
+  '<label>Urgency<select id="n_urg" data-d="urgency">'+sel('urgency',['Normal','High','Line stop'])+'</select></label>'+
+  '<label>Vehicle / project<input id="n_veh" data-d="vehicle" value="'+v('vehicle')+'"></label>'+
+  '<label>Part / drawing no.<input id="n_part" data-d="part" value="'+v('part')+'"></label></div>'+
+  '<label>Problem / root cause<textarea id="n_prob" data-d="problem" placeholder="What happens and why. Where it shows, how often.">'+v('problem')+'</textarea></label>'+
+  '<label>Proposed change (if known)<textarea id="n_prop" data-d="proposal">'+v('proposal')+'</textarea></label>'+
+  (assets?'<label>Sketch, photo or screenshot<input id="n_photo" type="file" accept="image/*"></label>':'<p class="muted small">Images can be attached by people with Contributor access or higher.</p>')+
+  '<div class="row"><button class="primary" type="submit"'+(S.busy?' disabled':'')+'>'+(S.busy?'Saving…':'Submit request')+'</button><span class="muted small">The request gets a number and goes on this week’s meeting.</span></div></form>';
+}
+
+function weekOpts(sel){let o='<option value="">Not planned</option>',has=false;for(let i=0;i<13;i++){const k=wkAdd(NOW,i);if(k===sel)has=true;o+='<option value="'+k+'"'+(k===sel?' selected':'')+'>'+esc(wkLabel(k))+(i===0?' (this week)':'')+'</option>'}
+  if(sel&&!has)o+='<option value="'+esc(sel)+'" selected>'+esc(wkLabel(sel))+' (past)</option>';return o}
+
+function deptRow(c,k,label,extra){
+  const x=inp(c,k),act=waveActive(c,k),id=esc(c.id);
+  const F=(f,ph,cl,more)=>'<label>'+ph+'<input '+(cl||'')+' data-f="inputs.'+k+'.'+f+'" data-id="'+id+'" value="'+esc(x[f]??'')+'" '+(more||'')+'></label>';
+  const pills=(done(x)&&!x.reconfirm?'<span class="pill '+(x.f==='ok'?'ok':'cm')+'">'+FV[x.f]+(x.at?' · '+esc(fd(x.at)):'')+'</span>':x.f==='no'?'<span class="pill bad">Not feasible</span>':act?'<span class="pill">Open</span>':'<span class="pill">Not started</span>')+
+    (x.reconfirm?'<span class="pill bad">Re-confirm: technical scope changed</span>':'')+(overdue(c,k)?'<span class="pill bad">Overdue since '+esc(fd(x.due))+'</span>':'');
+  const fb=Object.entries(FV).map(([v,l])=>'<button class="fb '+v+'" data-act="feas" data-id="'+id+'" data-k="'+k+'" data-v="'+v+'" aria-pressed="'+(x.f===v)+'"'+(act?'':' disabled')+'>'+l+'</button>').join('');
+  const sc=x.f==='no'||overdue(c,k)||x.reconfirm?'s-no':done(x)?(x.f==='ok'?'s-ok':'s-cond'):act?'s-open':'';
+  return '<div class="dept" data-dept-row="'+k+'"><div class="dh '+sc+'"><b>'+label+'</b>'+pills+'</div>'+
+    '<div class="feas" role="group" aria-label="'+label+' feasibility"><span class="fl">Feasibility</span>'+fb+'</div>'+(extra||'')+
+    '<div class="grid tight">'+F('who','Who')+F('oneoff','One-off cost (€)','class="mono"','inputmode="numeric" data-num')+F('piece','Cost per vehicle (€)','class="mono"','inputmode="decimal" data-num')+F('lead','Lead time (weeks)','class="mono"','inputmode="numeric" data-num')+F('due','Input due','','type="date"')+'</div>'+
+    '<div class="thread"><h3>Conditions, impact, comments</h3>'+entries(c).filter(e=>e.dept===k).map(e=>entryHtml(c,e)).join('')+addNoteForm(c,k,'Add a note for '+label)+'</div></div>';
+}
+
+function nextStep(c){
+  const id=esc(c.id),t=waveCount(c,TECH),m=waveCount(c,COMM),B=(a,l,cl)=>'<button class="'+(cl||'primary')+'" data-act="'+a+'" data-id="'+id+'">'+l+'</button>';
+  const bl=open(c)?blockers(c):[];let out='';
+  if(bl.length)out+='<div class="note bad"><span><b>Not feasible:</b> '+esc(bl.join(', '))+'. Return it to Design for another solution, or reject the change.</span><span class="row">'+B('rework','Return to Design (new revision)','')+B('reject','Reject','danger')+'</span></div>';
+  const s=c.stav;
+  if(s==='new')out+='<div class="note warn"><span><b>Change manager:</b> review the request, tick the departments that must give input, then send it to Design.</span>'+B('toprecheck','Send to Design pre-check')+'</div>';
+  else if(s==='precheck')out+='<div class="note"><span><b>Design:</b> two confirmations move this change to Release 1: Feasibility and the DMU check. <b>Still needed: '+esc(missing(c).join(', '))+'.</b></span></div>';
+  else if(s==='release1')out+='<div class="note warn"><span><b>Change manager:</b> Design pre-check passed. Check the selected departments and release the change for their inputs.</span>'+B('release1','Release to department inputs')+'</div>';
+  else if(s==='technical')out+='<div class="note"><span><b>Technical assessment:</b> '+t.ok+' of '+t.n+' inputs confirmed. Commercial assessment opens when all are in. <b>Still needed: '+esc(missing(c).join(', ')||'nothing')+'.</b></span></div>';
+  else if(s==='commercial')out+='<div class="note"><span><b>Commercial assessment:</b> technical scope is fixed, '+m.ok+' of '+m.n+' commercial inputs confirmed. Final approval opens when all are in. <b>Still needed: '+esc(missing(c).join(', ')||'nothing')+'.</b></span></div>';
+  else if(s==='approval')out+='<div class="note warn"><span><b>Change manager:</b> all inputs are in. Check the business case and decide.</span><span class="row">'+B('approve','Approve and release')+B('reject','Reject','danger')+'</span></div>';
+  else if(s==='docs')out+='<div class="note warn"><span><b>Design:</b> the change is approved. Issue the documentation and close it.</span>'+B('docsdone','Documentation released')+'</div>';
+  else if(s==='released')out+='<div class="note ok"><span><b>Closed.</b> Documentation released'+(c.decision&&c.decision.released?' on '+esc(fd(c.decision.released)):'')+'.</span></div>';
+  else if(s==='rejected')out+='<div class="note bad"><span><b>Rejected</b>'+(c.decision&&c.decision.date?' on '+esc(fd(c.decision.date)):'')+'.</span>'+B('rework','Reopen as new revision','')+'</div>';
+  return out;
+}
+
+function vDetail(c){
+  const id=esc(c.id),d=inp(c,'design'),tt=totals(c),bc=c.bc||{},dec=c.decision||{},doc=c.doc||{};
+  const F=(path,val,extra)=>'data-f="'+path+'" data-id="'+id+'" '+(extra||'')+' value="'+esc(val??'')+'"';
+  const T=(path,val,ph)=>'<textarea data-f="'+path+'" data-id="'+id+'" placeholder="'+esc(ph||'')+'">'+esc(val||'')+'</textarea>';
+  const pick=list=>'<div class="pick">'+list.map(([k,l])=>'<label><input type="checkbox" data-dept="'+k+'" data-id="'+id+'"'+(inp(c,k).on?' checked':'')+'>'+l+'</label>').join('')+'</div>';
+  const dmuAct=waveActive(c,'design');
+  const dmu='<div class="feas'+(dmuAct&&d.dmu!=='ok'&&d.dmu!=='no'&&done(d)?' need':'')+'" role="group" aria-label="DMU check"><span class="fl">DMU check</span>'+[['ok','Passed'],['no','Failed']].map(([v,l])=>'<button class="fb '+v+'" data-act="dmu" data-id="'+id+'" data-v="'+v+'" aria-pressed="'+(d.dmu===v)+'"'+(dmuAct?'':' disabled')+'>'+l+'</button>').join('')+'</div>';
+  const tc=waveCount(c,TECH),mc=waveCount(c,COMM),si=SIDX[c.stav]??9;
+  const wave=(list,cnt,locked,lockText,emptyText)=>(locked?'<p class="note"><span>'+lockText+'</span></p>':'')+(cnt.n?on(c,list).map(([k,l])=>deptRow(c,k,l)).join(''):'<p class="muted">'+emptyText+'</p>');
+  const mins=(c.minutes||[]).slice().reverse().map(z=>'<div><p class="small muted"><span class="mono">'+esc(wkLabel(z.week))+'</span> · written '+esc(fd(z.date))+'</p><p>'+esc(z.text)+'</p>'+(z.next?'<p class="small"><b>Next step:</b> '+esc(z.next)+(z.who?' ('+esc(z.who)+')':'')+'</p>':'')+'</div>').join('');
+  const hist=(c.log||[]).slice().reverse().map(l=>'<div><span class="mono">'+esc(fd(l.d))+'</span> · '+esc(l.t)+'</div>').join('');
+  const legal=c.type==='Safety / legal';
+  const ent=entries(c),m=S.min[c.id]||{};
+  const lastLine=latestLine(c);
+  const dtabs='<div class="tabs" role="tablist" aria-label="Change detail">'+[['process','Process'],['minutes','Notes & minutes'+(ent.length?' ('+ent.length+')':'')]].map(([k,l])=>'<button class="dtab" role="tab" data-act="dtab" data-k="'+k+'" aria-selected="'+(S.dtab===k)+'">'+l+'</button>').join('')+'</div>';
+  const MINTAB='<section class="panel"><h3>Latest status · all minutes and notes ('+ent.length+')</h3><p class="small">'+esc(waitText(c))+' · '+meetNote(c)+'</p>'+
+    (ent.length?'<input type="search" data-mq placeholder="Search minutes and notes" aria-label="Search minutes and notes"><div class="thread scrollbox" tabindex="0" aria-label="Minutes and notes, newest first">'+ent.map(e=>entryHtml(c,e)).join('')+'<p class="muted small" data-mq-empty hidden>Nothing matches the search.</p></div>':'<p class="muted">No notes or minutes yet.</p>')+'</section>'+
+    (open(c)?'<section class="panel"><h3>Add meeting minutes</h3><label>Minutes<textarea data-m="text" data-id="'+id+'" placeholder="What was agreed">'+esc(m.text||'')+'</textarea></label><div class="grid"><label>Next step<input data-m="next" data-id="'+id+'" value="'+esc(m.next||'')+'"></label><label>Who<input data-m="who" data-id="'+id+'" value="'+esc(m.who||'')+'"></label>'+
+      '<label>Back on the agenda<select data-m="shift" data-id="'+id+'">'+[['1','Next week'],['2','In 2 weeks'],['4','In 4 weeks'],['0','Not planned']].map(([a,b])=>'<option value="'+a+'"'+((m.shift||'1')===a?' selected':'')+'>'+b+'</option>').join('')+'</select></label></div><div><button class="primary" data-act="savemin" data-id="'+id+'">Save minutes and reschedule</button></div></section>':'')+
+    '<section class="panel"><h3>Process history</h3>'+(hist?'<div class="hist">'+hist+'</div>':'<p class="muted">No steps recorded yet.</p>')+'</section>';
+  return '<div class="stack"><div><button class="link" data-act="back">← Back to overview</button></div>'+
+  '<section class="panel"><h2>'+esc(c.title)+'</h2>'+lead(c)+
+    '<div class="facts"><div><span>Department</span>'+esc(DNAME[c.dept]||'—')+'</div><div><span>Requester</span>'+esc(c.requester||'—')+'</div><div><span>Vehicle / project</span>'+esc(c.vehicle||'—')+'</div><div><span>Part / drawing</span><b class="mono" style="font-weight:400">'+esc(c.part||'—')+'</b></div><div><span>Submitted</span>'+esc(fd(c.date))+'</div><div><span>Owner</span>'+esc(c.owner||'—')+'</div></div></section>'+
+  '<section class="panel"><h3>Where it is now</h3>'+track(c)+nextStep(c)+lastLine+'</section>'+dtabs+
+  (S.dtab==='minutes'?MINTAB:'<div class="rail"><section class="panel rs '+stageClass(c,1)+'"><h3>Step 1 · Design pre-check</h3><p class="muted small">Design confirms the change can be done and that it fits in the digital mock-up, before any other department spends time on it.</p>'+deptRow(c,'design','Design',dmu)+'</section>'+
+  '<section class="panel rs '+stageClass(c,2)+'"><h3>Release 1 · Departments required (by directive)</h3><div class="stack" style="gap:8px"><p class="small muted">Technical assessment</p>'+pick(TECH)+'<p class="small muted">Commercial assessment</p>'+pick(COMM)+'</div></section>'+
+  '<section class="panel rs '+stageClass(c,3)+'"><h3>Step 2a · Technical assessment'+(tc.n?' · '+tc.ok+'/'+tc.n+' confirmed':'')+'</h3>'+wave(TECH,tc,open(c)&&si<3,'Opens after Release 1 by the change manager.','No technical department selected.')+'</section>'+
+  '<section class="panel rs '+stageClass(c,4)+'"><h3>Step 2b · Commercial assessment'+(mc.n?' · '+mc.ok+'/'+mc.n+' confirmed':'')+'</h3><p class="muted small">Priced on the final technical scope. Purchasing can note a preliminary quote earlier; Feasibility unlocks when all technical inputs are in.</p>'+wave(COMM,mc,open(c)&&si<4,'Opens when the technical assessment is complete.','No commercial department selected.')+'</section>'+
+  '<section class="panel rs '+stageClass(c,5)+'"><h3>Business case and final approval</h3>'+(legal?'<p class="note warn"><span>Safety / legal change: to be implemented regardless of benefit.</span></p>':'')+
+    '<div class="kpis"><div><span>One-off cost</span><b>'+money(tt.one)+'</b></div><div><span>Cost per vehicle</span><b>'+money(tt.piece)+'</b></div><div><span>Longest lead time</span><b>'+(tt.lead?tt.lead+' wk':'—')+'</b></div><div><span>Net benefit / year</span><b>'+(tt.ben||tt.vol?money(tt.net):'—')+'</b></div><div><span>Payback</span><b>'+(tt.payback!=null?tt.payback.toFixed(1)+' yr':'—')+'</b></div></div>'+
+    '<div class="grid"><label>Benefit per year (€)<input class="mono" inputmode="numeric" data-num '+F('bc.benefit',bc.benefit)+'></label><label>Vehicles per year<input class="mono" inputmode="numeric" data-num '+F('bc.volume',bc.volume)+'></label></div>'+
+    '<div class="grid"><label>Pros'+T('bc.pros',bc.pros)+'</label><label>Cons'+T('bc.cons',bc.cons)+'</label></div>'+
+    '<label>Reason for the decision'+T('decision.reason',dec.reason,'Why we approve or reject')+'</label>'+(dec.date?'<p class="small muted">Decision: '+esc(dec.result||'')+' on '+esc(fd(dec.date))+'.</p>':'')+'</section>'+
+  '<section class="panel rs '+stageClass(c,6)+'"><h3>Step 3 · Documentation release</h3><div class="grid"><label>ECN / drawing change no.<input class="mono" '+F('doc.ecn',doc.ecn)+'></label><label>Effective from (vehicle no. or date)<input '+F('doc.effective',doc.effective)+'></label>'+
+    '<label>Old parts stock<select data-f="doc.stock" data-id="'+id+'">'+['','Use up','Rework','Scrap'].map(x=>'<option value="'+x+'"'+((doc.stock||'')===x?' selected':'')+'>'+(x||'Not decided')+'</option>').join('')+'</select></label></div></section></div>'+
+  '<section class="panel"><h3>Planning</h3><div class="grid"><label>Owner<input '+F('owner',c.owner)+'></label><label>Target date<input type="date" '+F('target',c.target)+'></label><label>Discuss at meeting<select data-f="week" data-id="'+id+'">'+weekOpts(c.week)+'</select></label></div></section>')+
+  '<section class="panel"><details><summary>Edit the request</summary><div class="stack"><label>Title<input '+F('title',c.title)+'></label><div class="grid"><label>Change type<select data-f="type" data-id="'+id+'">'+TYPES.map(x=>'<option'+(c.type===x?' selected':'')+'>'+x+'</option>').join('')+'</select></label><label>Vehicle / project<input '+F('vehicle',c.vehicle)+'></label><label>Part / drawing no.<input '+F('part',c.part)+'></label></div>'+
+    '<label>Problem / root cause'+T('problem',c.problem)+'</label><label>Proposed change'+T('proposal',c.proposal)+'</label>'+
+    (assets?'<label>'+(blobOk(c.photo)?'Replace image':'Attach sketch or photo')+'<input type="file" accept="image/*" data-photo="'+id+'"></label>':'')+
+    '<label>Stage (manual override)<select data-act-stage data-id="'+id+'">'+[...STAGES.map(s=>[s[0],s[1]]),['released','Released'],['rejected','Rejected']].map(([k,l])=>'<option value="'+k+'"'+(c.stav===k?' selected':'')+'>'+l+'</option>').join('')+'</select></label></div></details></section>'+
+  '<div class="row">'+(open(c)&&!blockers(c).length&&c.stav!=='approval'?'<button data-act="rework" data-id="'+id+'">Return to Design (new revision)</button><button class="danger" data-act="reject" data-id="'+id+'">Reject</button>':'')+
+    (S.del?'<span class="small">Delete for good? This cannot be undone.</span><button class="danger" data-act="delyes" data-id="'+id+'">Delete</button><button data-act="delno">Keep</button>':'<button class="danger" data-act="delask">Delete change</button>')+'</div></div>';
+}
+
+function vMeeting(){
+  const W=S.week,mine=S.items.filter(c=>c.week===W&&open(c)),carried=W===NOW?S.items.filter(c=>open(c)&&c.week&&c.week<NOW):[];
+  const discussed=S.items.filter(c=>(c.minutes||[]).some(z=>z.week===W)&&!(c.week===W&&open(c))&&!carried.includes(c));
+  const card=c=>{const m=S.min[c.id]||{},id=esc(c.id),last=(c.minutes||[]).slice(-1)[0],late=['design',...TECH.map(d=>d[0]),...COMM.map(d=>d[0])].filter(k=>(k==='design'||inp(c,k).on)&&overdue(c,k));
+    return '<div class="panel" data-card="'+id+'"><div class="row" style="justify-content:space-between"><h2>'+esc(c.title)+'</h2><button class="link" data-act="open" data-id="'+id+'">Open detail</button></div>'+lead(c)+track(c)+
+    '<p class="small"><b>'+esc(waitText(c))+'</b>'+(c.owner?' · owner '+esc(c.owner):'')+(c.week<W?' · <span class="pill cm">carried over from '+esc(cw(c.week))+'</span>':'')+(late.length?' · <span class="pill bad">overdue: '+esc(late.map(k=>DNAME[k]).join(', '))+'</span>':'')+'</p>'+
+    latestLine(c,'muted')+
+    '<label>Minutes<textarea data-m="text" data-id="'+id+'" placeholder="What was agreed">'+esc(m.text||'')+'</textarea></label>'+
+    '<div class="grid"><label>Next step<input data-m="next" data-id="'+id+'" value="'+esc(m.next||'')+'"></label><label>Who<input data-m="who" data-id="'+id+'" value="'+esc(m.who||'')+'"></label>'+
+    '<label>Back on the agenda<select data-m="shift" data-id="'+id+'">'+[['1','Next week'],['2','In 2 weeks'],['4','In 4 weeks'],['0','Not planned']].map(([a,b])=>'<option value="'+a+'"'+((m.shift||'1')===a?' selected':'')+'>'+b+'</option>').join('')+'</select></label></div>'+
+    '<div><button class="primary" data-act="savemin" data-id="'+id+'">Save minutes and reschedule</button></div></div>'};
+  const list=[...carried,...mine];
+  return '<div class="stack"><div class="weeknav"><button data-act="wk" data-n="-1" aria-label="Previous week">‹</button><span class="w">'+esc(wkLabel(W))+'</span><button data-act="wk" data-n="1" aria-label="Next week">›</button>'+(W!==NOW?'<button data-act="wk" data-n="0">This week</button>':'')+
+    '<span class="muted small">'+list.length+' item'+(list.length===1?'':'s')+' to discuss</span><button data-act="copy" style="margin-left:auto">Copy this week’s minutes</button></div>'+
+    (list.length?list.map(card).join(''):'<div class="empty"><p>Nothing is planned for this week.</p><p class="small">Set the meeting week in a change’s detail, or let the minutes from the previous meeting reschedule it.</p></div>')+
+    (discussed.length?'<h3>Discussed this week · minutes saved</h3>'+discussed.map(c=>{const zs=(c.minutes||[]).filter(z=>z.week===W);return '<div class="panel" data-done="'+esc(c.id)+'"><div class="row" style="justify-content:space-between"><h2>'+esc(c.title)+'</h2><button class="link" data-act="open" data-id="'+esc(c.id)+'">Open detail</button></div><div class="row"><span class="mono small">'+esc(c.no)+'</span>'+stagePill(c)+'<span class="pill ok">Minutes saved</span>'+(open(c)?meetNote(c):'')+'</div><div class="log">'+zs.map(z=>'<div><p>'+esc(z.text)+'</p>'+(z.next?'<p class="small"><b>Next step:</b> '+esc(z.next)+(z.who?' ('+esc(z.who)+')':'')+'</p>':(z.who?'<p class="small muted">'+esc(z.who)+'</p>':''))+'</div>').join('')+'</div></div>'}).join(''):'')+'</div>';
+}
+
+function render(){
+  pending=false;
+  document.querySelectorAll('.tabs a').forEach(a=>{if(a.dataset.tab===S.view&&!S.detail)a.setAttribute('aria-current','page');else a.removeAttribute('aria-current')});
+  let top='';
+  if(S.err)top='<p class="note bad"><span>'+esc(S.err)+'</span></p>';
+  else if(!S.loaded)top='<p class="note'+(S.slow?' warn':'')+'"><span>'+(S.slow?'The data cannot be reached yet. Check your connection; the page keeps trying.':'Loading changes…')+'</span></p>';
+  if(S.detail&&!get(S.detail)&&S.loaded)S.detail=null;
+  const c=S.detail&&get(S.detail);
+  const wasOpen=!!app.querySelector('details[open]');
+  app.innerHTML='<div class="stack">'+top+(c?vDetail(c):S.view==='new'?vNew():S.view==='meeting'?vMeeting():vOverview())+'</div>';
+  if(wasOpen&&c){const d=app.querySelector('details');if(d)d.open=true}
+}
+const typing=()=>{const a=document.activeElement;return a&&app.contains(a)&&/INPUT|TEXTAREA|SELECT/.test(a.tagName)&&a.type!=='checkbox'&&!(a.hasAttribute('data-mq')&&!a.value)};
+let down=false;
+app.addEventListener('pointerdown',()=>{down=true});
+['pointerup','pointercancel'].forEach(ev=>window.addEventListener(ev,()=>setTimeout(()=>{down=false;if(pending&&!typing())render()},80)));
+function soft(){if(typing()||down){pending=true;return}render()}
+app.addEventListener('focusout',()=>setTimeout(()=>{if(pending&&!typing())render()},120));
+
+/* ---------- actions ---------- */
+function route(){const h=location.hash.slice(1);S.view=['overview','meeting','new'].includes(h)?h:'overview';S.detail=null;S.del=false;render();window.scrollTo(0,0)}
+window.addEventListener('hashchange',route);
+document.querySelectorAll('.tabs a').forEach(l=>l.addEventListener('click',()=>{if(location.hash==='#'+l.dataset.tab||(!location.hash&&l.dataset.tab==='overview'))route()}));
+
+async function toJpeg(file){const bmp=await createImageBitmap(file);const k=Math.min(1,1800/Math.max(bmp.width,bmp.height));const cv=document.createElement('canvas');cv.width=Math.round(bmp.width*k);cv.height=Math.round(bmp.height*k);
+  const g=cv.getContext('2d');g.fillStyle='#fff';g.fillRect(0,0,cv.width,cv.height);g.drawImage(bmp,0,0,cv.width,cv.height);return new Promise((res,rej)=>cv.toBlob(b=>b?res(b):rej(new Error('x')),'image/jpeg',.86))}
+async function upload(file){if(!assets||!file)return null;try{const b=await toJpeg(file);const r=await assets.upload(b,{type:'image/jpeg'});return r.id}catch(e){toast('The image could not be uploaded. Try a JPG or PNG.',true);return null}}
+function nextNo(){const y=new Date().getFullYear();let m=0;S.items.forEach(c=>{const r=/^CR-(\d{4})-(\d+)$/.exec(c.no||'');if(r&&Number(r[1])===y)m=Math.max(m,Number(r[2]))});return 'CR-'+y+'-'+String(m+1).padStart(3,'0')}
+
+app.addEventListener('submit',async e=>{
+  if(e.target.id!=='fnew')return;e.preventDefault();if(S.busy)return;
+  const d=S.draft;if(!(d.title||'').trim()||!d.dept||!(d.problem||'').trim()){toast('Please fill in title, department and problem.',true);return}
+  if(!db){toast('Storage is not available.',true);return}
+  const f=document.getElementById('n_photo');const file=f&&f.files[0];S.busy=true;render();
+  const photo=await upload(file);
+  const doc={no:nextNo(),rev:0,title:d.title.trim(),dept:d.dept,requester:(d.requester||'').trim(),type:d.type||TYPES[0],urgency:d.urgency||'Normal',vehicle:(d.vehicle||'').trim(),part:(d.part||'').trim(),
+    problem:d.problem.trim(),proposal:(d.proposal||'').trim(),photo:photo,date:today(),stav:'new',owner:'',target:'',week:NOW,inputs:{design:{on:true,f:'pending',dmu:'pending'}},bc:{},decision:{},doc:{},minutes:[],log:[{d:today(),t:'Request submitted'}]};
+  try{const ref=db.collection('changes').doc();await ref.set(doc);S.draft={};S.busy=false;S.detail=ref.id;toast('Request '+doc.no+' saved');render();window.scrollTo(0,0)}
+  catch(err){S.busy=false;toast(errMsg(err),true);render()}
+});
+
+app.addEventListener('input',e=>{const t=e.target;
+  if(t.dataset.d)S.draft[t.dataset.d]=t.value;
+  else if(t.dataset.nk!==undefined){S.note[t.dataset.id+':'+t.dataset.nk]=t.value}
+  else if(t.hasAttribute('data-r')){S.rdraft=t.value}
+  else if(t.hasAttribute('data-mq')){const q=t.value.trim().toLowerCase();let n=0;app.querySelectorAll('.scrollbox .entry').forEach(el=>{const hit=!q||el.textContent.toLowerCase().includes(q);el.hidden=!hit;if(hit)n++});const em=app.querySelector('[data-mq-empty]');if(em)em.hidden=n>0}
+  else if(t.hasAttribute('data-me')){S.me=t.value;try{localStorage.setItem('cm_name',S.me)}catch(e){}}
+  else if(t.dataset.m){(S.min[t.dataset.id]=S.min[t.dataset.id]||{})[t.dataset.m]=t.value}
+  else if(t.hasAttribute('data-search')){S.q=t.value;clearTimeout(S.qt);S.qt=setTimeout(()=>{render();const h=document.getElementById('search');if(h){h.focus();h.setSelectionRange(h.value.length,h.value.length)}},250)}
+});
+app.addEventListener('change',async e=>{const t=e.target,id=t.dataset.id;
+  if(t.dataset.f&&id){const v=t.hasAttribute('data-num')?(t.value.trim()===''?'':num(t.value)):t.value;await write(id,nest(t.dataset.f,v));soft()}
+  else if(t.dataset.dept&&id){const k=t.dataset.dept,chk=t.checked;await mutate(id,(p,patch)=>setIn(p,patch,k,{on:chk,f:inp(p,k).f||'pending'}),DNAME[k]+(chk?' added to':' removed from')+' required inputs');soft()}
+  else if(t.hasAttribute('data-act-stage')&&id){const s=t.value;await mutate(id,(p,patch)=>{p.stav=s;if(s==='rejected')patch.rejAt=get(id).stav},'Stage set manually');soft()}
+  else if(t.dataset.photo&&t.files[0]){toast('Uploading image…');const fid=await upload(t.files[0]);if(fid){await write(t.dataset.photo,{photo:fid});soft()}}
+});
+app.addEventListener('click',async e=>{const b=e.target.closest('[data-act]');if(!b||b.disabled)return;const a=b.dataset.act,id=b.dataset.id,c=id&&get(id);
+  if(a==='open'){S.detail=id;S.del=false;S.dtab='process';render();window.scrollTo(0,0)}
+  else if(a==='back'){S.detail=null;render()}
+  else if(a==='dtab'){S.dtab=b.dataset.k;render()}
+  else if(a==='addnote'&&c){const k=b.dataset.k,key=id+':'+k,txt=(S.note[key]||'').trim();if(!txt){toast('Write the note first.',true);return}
+    const n={id:'n'+Date.now().toString(36)+Math.random().toString(36).slice(2,6),ts:nowTs(),who:(S.me||'').trim(),dept:k,text:txt,re:''};
+    delete S.note[key];await write(id,{notes:[...(c.notes||[]),n]});toast('Note saved');render()}
+  else if(a==='reply'){S.reply=id+'|'+b.dataset.re;S.rdraft='';render();const el=app.querySelector('[data-r]');if(el)el.focus()}
+  else if(a==='cancelreply'){S.reply=null;render()}
+  else if(a==='sendreply'&&c){const txt=(S.rdraft||'').trim();if(!txt){toast('Write the reply first.',true);return}
+    const n={id:'n'+Date.now().toString(36)+Math.random().toString(36).slice(2,6),ts:nowTs(),who:(S.me||'').trim(),dept:'',text:txt,re:b.dataset.re};
+    S.reply=null;S.rdraft='';await write(id,{notes:[...(c.notes||[]),n]});toast('Reply saved');render()}
+  else if(a==='filter'){S.filter=b.dataset.k;render()}
+  else if(a==='wk'){const n=Number(b.dataset.n);S.week=n===0?NOW:wkAdd(S.week,n);render()}
+  else if(a==='feas'&&c){const k=b.dataset.k,v=inp(c,k).f===b.dataset.v?'pending':b.dataset.v;
+    await mutate(id,(p,patch)=>{setIn(p,patch,k,{f:v,at:v==='pending'?'':today(),reconfirm:false});
+      if(TECH.some(d=>d[0]===k)&&(p.stav==='commercial'||p.stav==='approval'))COMM.forEach(([m])=>{const x=inp(p,m);if(x.on&&done(x))setIn(p,patch,m,{reconfirm:true})})},
+      DNAME[k]+' feasibility: '+(FV[v]||'cleared')+(inp(c,k).who?' ('+inp(c,k).who+')':'')).then(r=>{render();announce(id,r)})}
+  else if(a==='dmu'&&c){const v=inp(c,'design').dmu===b.dataset.v?'pending':b.dataset.v;await mutate(id,(p,patch)=>setIn(p,patch,'design',{dmu:v}),'DMU check: '+(v==='ok'?'passed':v==='no'?'failed':'cleared')).then(r=>{render();announce(id,r)})}
+  else if(a==='toprecheck'){await mutate(id,p=>{p.stav='precheck'},'Sent to Design pre-check').then(r=>{render();announce(id,r)})}
+  else if(a==='release1'&&c){if(!on(c,TECH).length&&!on(c,COMM).length){toast('Tick at least one department that must give input.',true);return}
+    await mutate(id,(p,patch)=>{p.stav='technical';patch.release1=today()},'Release 1: released to department inputs').then(r=>{render();announce(id,r)})}
+  else if(a==='approve'){await mutate(id,(p,patch)=>{p.stav='docs';patch.decision={result:'Approved',date:today()}},'Final approval: approved').then(r=>{render();announce(id,r)})}
+  else if(a==='reject'&&c){await mutate(id,(p,patch)=>{p.stav='rejected';patch.rejAt=c.stav;patch.decision={result:'Rejected',date:today()}},'Rejected');render()}
+  else if(a==='docsdone'){await mutate(id,(p,patch)=>{p.stav='released';patch.decision={released:today()};patch.week=''},'Documentation released').then(r=>{render();announce(id,r)})}
+  else if(a==='rework'&&c){await mutate(id,(p,patch)=>{p.rev=(p.rev||0)+1;patch.rev=p.rev;Object.keys(p.inputs||{}).forEach(k=>setIn(p,patch,k,{f:'pending',at:'',reconfirm:false,due:''}));setIn(p,patch,'design',{dmu:'pending',on:true});p.stav='precheck';patch.decision={result:'',date:''};if(!p.week){patch.week=NOW}},'Returned to Design, revision '+String.fromCharCode(66+(c.rev||0)));render()}
+  else if(a==='delask'){S.del=true;render()}
+  else if(a==='delno'){S.del=false;render()}
+  else if(a==='delyes'){try{await db.doc('changes/'+id).delete();S.detail=null;S.del=false;toast('Deleted');render()}catch(err){toast(errMsg(err),true)}}
+  else if(a==='savemin'&&c){const m=S.min[id]||{};if(!(m.text||'').trim()){toast('Write what was agreed first.',true);return}
+    const W=S.detail?NOW:S.week,n=Number(m.shift||'1'),base=W>NOW?W:NOW;
+    const z=[...(c.minutes||[]),{week:W,date:today(),ts:nowTs(),text:m.text.trim(),next:(m.next||'').trim(),who:(m.who||'').trim()}];
+    delete S.min[id];const nw=n?wkAdd(base,n):'';await write(id,{minutes:z,week:nw});toast('Minutes saved'+(nw?', next meeting '+cw(nw):''));render();if(!S.detail){const el=app.querySelector('[data-done="'+id+'"]');if(el)el.scrollIntoView({block:'center'})}}
+  else if(a==='copy'){const W=S.week,lines=['Change management meeting, '+wkLabel(W),''];
+    S.items.forEach(c=>(c.minutes||[]).filter(z=>z.week===W).forEach(z=>{lines.push(c.no+' '+c.title+' ['+(SNAME[c.stav]||'')+']','  '+z.text);if(z.next)lines.push('  Next step: '+z.next+(z.who?' ('+z.who+')':''));lines.push('')}));
+    if(lines.length<3){toast('No minutes written for this week yet.',true);return}
+    try{await navigator.clipboard.writeText(lines.join('\n'));toast('Minutes copied')}catch(err){toast('Copying is not possible here. The minutes are in each change’s detail.',true)}}
+});
+app.addEventListener('error',e=>{const t=e.target;if(t.tagName==='IMG'){const p=document.createElement('div');p.className='noimg '+t.className;p.textContent='Image unavailable';t.replaceWith(p)}},true);
+
+/* ---------- start ---------- */
+function start(){
+  route();
+  if(!(window.claude&&window.claude.use)){S.err='Storage is only available when this page is opened in Claude. Changes will not be saved now.';S.loaded=true;render();return}
+  const timer=setTimeout(()=>{if(!S.loaded){S.slow=true;soft()}},10000);
+  window.claude.use('assets').then(a=>{assets=a;if(a)soft()});
+  window.claude.use('db').then(d=>{
+    if(!d){clearTimeout(timer);S.err='Storage is not available here. Sign in to Claude and open the page again.';S.loaded=true;render();return}
+    db=d;
+    d.collection('changes').onSnapshot(snap=>{
+      S.items=snap.docs.map(x=>Object.assign({},x.data(),{id:x.id})).filter(x=>x.no).sort((a,b)=>String(b.no).localeCompare(String(a.no)));
+      if(!snap.metadata.fromCache||snap.size){S.loaded=true;S.slow=false}
+      if(!snap.metadata.fromCache)clearTimeout(timer);
+      soft();
+    },err=>{clearTimeout(timer);S.loaded=true;S.err=err&&err.code==='revoked'?'Access to the data has ended.':'The data could not be loaded.';render()});
+  });
+}
+try{S.me=localStorage.getItem('cm_name')||''}catch(e){}
+window.claude?.hot?.snapshot?.(()=>({draft:S.draft,min:S.min,week:S.week,note:S.note}));
+const boot=d=>{if(d){Object.assign(S.draft,d.draft||{});Object.assign(S.min,d.min||{});Object.assign(S.note,d.note||{});if(d.week)S.week=d.week}start()};
+window.claude?.hot?.ready?window.claude.hot.ready(boot):boot(window.claude?.hot?.data);
+</script>
+
+</body></html>
