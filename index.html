@@ -311,28 +311,28 @@ const refYear=c=>c.sop?Math.min(2030,Math.max(2026,sopYear(c)+1)):2027;
 const sopLabel=v=>v?MON[Number(v.slice(5,7))-1]+' '+v.slice(0,4):'';
 function sopFrac(c,y){if(!c.sop)return 0;const sy=sopYear(c),sm=Number(c.sop.slice(5,7));return y<sy?0:y>sy?1:(13-sm)/12}
 function finance(c){const t=totals(c);return YEARS.map(y=>{const f=sopFrac(c,y),inv=sopYear(c)===y?t.one:0,veh=Math.round(volYear(c,y)*f),piece=t.piece*veh,ben=t.ben*f;return {y,veh,inv,piece,ben,net:ben-piece-inv}})}
-const MONTHS=[];for(let y=2026;y<=2030;y++)for(let m=(y===2026?11:1);m<=12;m++)MONTHS.push([y,m]);
+const RAMP_YEAR=2027,MONTHS=[];for(let m=1;m<=12;m++)MONTHS.push([RAMP_YEAR,m]);
 function monthly(c){const t=totals(c);return MONTHS.map(([y,m])=>{const ym=y+'-'+String(m).padStart(2,'0');if(!c.sop||ym<c.sop)return {inv:0,piece:0,ben:0};return {inv:ym===c.sop?t.one:0,piece:t.piece*volYear(c,y)/12,ben:t.ben/12}})}
 const fmtK=n=>{const a=Math.abs(n);return (n<0?'−':'')+'€ '+(a>=1000?(a/1000).toFixed(a>=10000?0:1)+'k':Math.round(a))};
 function nice(v){if(v<=0)return 0;const e=Math.pow(10,Math.floor(Math.log10(v))),f=v/e;return (f<=1?1:f<=2?2:f<=5?5:10)*e}
 function rampSvg(list){
   const N=MONTHS.length,sum=MONTHS.map(()=>({inv:0,piece:0,ben:0}));list.forEach(c=>monthly(c).forEach((x,i)=>{sum[i].inv+=x.inv;sum[i].piece+=x.piece;sum[i].ben+=x.ben}));
   let cc=0,cb=0;const cum=sum.map(x=>{cc+=x.inv+x.piece;cb+=x.ben;return {c:cc,b:cb}});
-  const bw=20,ml=64,mr=14,W=ml+N*bw+mr,h1=150,t1=18,gap=44,h2=120,t2=t1+h1+gap,H=t2+h2+40;
+  const bw=Math.max(22,Math.min(70,Math.floor((Math.min(window.innerWidth,1000)-150)/12))),pd=Math.max(3,Math.round(bw*.2)),ml=64,mr=14,W=ml+N*bw+mr,h1=150,t1=18,gap=44,h2=120,t2=t1+h1+gap,H=t2+h2+40;
   const max1=nice(Math.max(1,...sum.map(x=>Math.max(x.piece,0)+x.inv))),min1=-nice(Math.max(0,...sum.map(x=>-Math.min(x.piece,0))));
   const y1=v=>t1+h1-(v-min1)/(max1-min1)*h1;
   const max2=nice(Math.max(1,...cum.map(x=>Math.max(x.c,x.b)))),min2=-nice(Math.max(0,...cum.map(x=>-Math.min(x.c,0))));
   const y2=v=>t2+h2-(v-min2)/(max2-min2)*h2,X=i=>ml+i*bw;
-  let o='<svg class="ramp" viewBox="0 0 '+W+' '+H+'" width="'+W+'" height="'+H+'" role="img" aria-label="Monthly cost impact and cumulative cost and benefit, November 2026 to December 2030">';
+  let o='<svg class="ramp" viewBox="0 0 '+W+' '+H+'" width="'+W+'" height="'+H+'" role="img" aria-label="Monthly cost impact and cumulative cost and benefit, January to December 2027">';
   const grid=(y,l,z)=>'<line class="'+(z?'zl':'gl')+'" x1="'+ml+'" x2="'+(W-mr)+'" y1="'+y+'" y2="'+y+'"/><text x="'+(ml-8)+'" y="'+(y+4)+'" text-anchor="end">'+l+'</text>';
   o+='<text class="ttl" x="'+ml+'" y="11">Cost per month</text>'+grid(y1(max1),fmtK(max1))+grid(y1(max1/2),fmtK(max1/2))+grid(y1(0),'0',1)+(min1<0?grid(y1(min1),fmtK(min1)):'');
-  o+='<text class="ttl" x="'+ml+'" y="'+(t2-8)+'">Cumulative since November 2026</text>'+grid(y2(max2),fmtK(max2))+grid(y2(max2/2),fmtK(max2/2))+grid(y2(0),'0',1)+(min2<0?grid(y2(min2),fmtK(min2)):'');
+  o+='<text class="ttl" x="'+ml+'" y="'+(t2-8)+'">Cumulative in 2027</text>'+grid(y2(max2),fmtK(max2))+grid(y2(max2/2),fmtK(max2/2))+grid(y2(0),'0',1)+(min2<0?grid(y2(min2),fmtK(min2)):'');
   MONTHS.forEach(([y,m],i)=>{const x=X(i);if(m===1||i===0)o+='<line class="gl" x1="'+x+'" x2="'+x+'" y1="'+t1+'" y2="'+(t2+h2+6)+'"/><text class="yr" x="'+(x+4)+'" y="'+(H-6)+'">'+y+'</text>';
     o+='<text class="mn" x="'+(x+bw/2)+'" y="'+(t1+h1+14)+'" text-anchor="middle">'+m+'</text><text class="mn" x="'+(x+bw/2)+'" y="'+(t2+h2+16)+'" text-anchor="middle">'+m+'</text>';
     const s2=sum[i],base=Math.max(s2.piece,0);
-    if(s2.piece>0)o+='<rect class="fp" x="'+(x+3)+'" y="'+y1(s2.piece)+'" width="'+(bw-6)+'" height="'+(y1(0)-y1(s2.piece))+'"/>';
-    if(s2.piece<0)o+='<rect class="fs" x="'+(x+3)+'" y="'+y1(0)+'" width="'+(bw-6)+'" height="'+(y1(s2.piece)-y1(0))+'"/>';
-    if(s2.inv>0)o+='<rect class="fi" x="'+(x+3)+'" y="'+y1(base+s2.inv)+'" width="'+(bw-6)+'" height="'+(y1(base)-y1(base+s2.inv))+'"/>'});
+    if(s2.piece>0)o+='<rect class="fp" x="'+(x+pd)+'" y="'+y1(s2.piece)+'" width="'+(bw-2*pd)+'" height="'+(y1(0)-y1(s2.piece))+'"/>';
+    if(s2.piece<0)o+='<rect class="fs" x="'+(x+pd)+'" y="'+y1(0)+'" width="'+(bw-2*pd)+'" height="'+(y1(s2.piece)-y1(0))+'"/>';
+    if(s2.inv>0)o+='<rect class="fi" x="'+(x+pd)+'" y="'+y1(base+s2.inv)+'" width="'+(bw-2*pd)+'" height="'+(y1(base)-y1(base+s2.inv))+'"/>'});
   const line=(k,cl)=>'<polyline class="'+cl+'" points="'+cum.map((x,i)=>(X(i)+bw/2)+','+y2(x[k]).toFixed(1)).join(' ')+'"/>';
   o+=line('b','lb')+line('c','lc')+'<text class="endc" x="'+(W-mr-4)+'" y="'+(y2(cum[N-1].c)-6)+'" text-anchor="end">'+fmtK(cum[N-1].c)+'</text><text class="endb" x="'+(W-mr-4)+'" y="'+(y2(cum[N-1].b)-6)+'" text-anchor="end">'+fmtK(cum[N-1].b)+'</text>';
   return '<div class="tw">'+o+'</svg></div><p class="small muted"><span class="key fi"></span>investment in the start month · numbers under the bars are months (1 = January) <span class="key od"></span>piece price cost <span class="key fs"></span>piece price saving <span class="key ln od"></span>cumulative cost <span class="key ln fs"></span>cumulative other benefit</p>'}
@@ -417,7 +417,7 @@ function vOverview(){
   const frow=(l,f,cl)=>'<tr class="'+(cl||'')+'"><th>'+l+'</th><td>'+fmtTable(f.inv)+'</td><td class="'+(f.piece>0?'neg':f.piece<0?'pos':'')+'">'+fmtTable(f.piece,1)+'</td><td>'+fmtTable(f.ben)+'</td><td class="'+(f.net<0?'neg':f.net>0?'pos':'')+'"><b>'+fmtTable(f.net,1)+'</b></td></tr>';
   const fpanel='<div class="panel"><h3>Financial impact by year · '+fin.length+' changes with a planned start</h3><div class="tw"><table class="ft"><thead><tr><th>Year</th><th>Investment</th><th>Piece price effect</th><th>Other benefit</th><th>Net effect</th></tr></thead><tbody>'+fy.map(f=>frow(f.y,f)).join('')+frow('Total',ft,'tot')+'</tbody></table></div><p class="small muted">Piece price effect = cost per vehicle × example volume of the affected configurations, counted from the planned start. '+(nosop?nosop+' change'+(nosop===1?' has':'s have')+' no planned start yet and '+(nosop===1?'is':'are')+' not included.':'')+'</p>'+
     '<details><summary class="small">Example yearly volumes by configuration</summary><div class="tw"><table class="ft"><thead><tr><th>Configuration</th>'+YEARS.map(y=>'<th>'+y+'</th>').join('')+'</tr></thead><tbody>'+CFGS.map(([k,l])=>'<tr><th>'+l+'</th>'+YEARS.map(y=>'<td>'+VOL[y][k].toLocaleString('en-GB')+'</td>').join('')+'</tr>').join('')+'<tr class="tot"><th>Total</th>'+YEARS.map(y=>'<td>'+Object.values(VOL[y]).reduce((a,b)=>a+b,0).toLocaleString('en-GB')+'</td>').join('')+'</tr></tbody></table></div></details></div>';
-  const rpanel=fin.length?'<div class="panel"><h3>Cost ramp-up by month · from each change’s planned start</h3>'+rampSvg(fin)+'</div>':'';
+  const rpanel=fin.length?'<div class="panel"><h3>Cost ramp-up by month · 2027</h3>'+rampSvg(fin)+'</div>':'';
   const chips=[['open','Open'],['released','Released'],['rejected','Rejected'],['all','All']].map(([k,l])=>'<button class="chip" data-act="filter" data-k="'+k+'" aria-pressed="'+(f===k)+'">'+l+'<span class="n">'+all.filter(c=>match(c,k)).length+'</span></button>').join('');
   let list=all.filter(c=>match(c,f));
   if(q)list=list.filter(c=>[c.no,c.title,c.requester,c.part,c.vehicle,c.problem,c.proposal].join(' ').toLowerCase().includes(q));
